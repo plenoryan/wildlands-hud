@@ -4,14 +4,14 @@
 
 [English](README.md) · [Site do projeto](https://plenoryan.github.io/wildlands-hud/) · [Baixar v0.4.0](https://github.com/plenoryan/wildlands-hud/releases/download/v0.4.0/WildlandsHUD.zip) · [Notas da versão](CHANGELOG.md)
 
-**A v0.4.0 é uma prévia experimental.** A V3 funcionou no teste em partida relatado. O comportamento adicional de aliados da V4 ainda precisa de confirmação dentro do jogo, incluindo aliados caídos fora da tela e o estado após a reanimação.
+**V3 e V4 tiveram funcionamento confirmado em testes em partida relatados pelo criador.** A v0.4.0 continua sendo a primeira prévia pública; esses relatos não comprovam compatibilidade com todas as instalações, versões ou situações do jogo.
 
 ## Escolha uma opção
 
 | Opção | Comportamento | Validação |
 | --- | --- | --- |
 | **V3 — somente inimigos** | Oculta os ícones, distâncias, círculos e pulsos dos inimigos nos alvos inspecionados. | Confirmada em um teste relatado dentro do jogo. |
-| **V4 — inimigos e aliados normais** | Inclui a V3 e oculta marcadores normais, nomes e distâncias de aliados. Preserva o gauge/símbolo de aliado caído e condiciona as duas setas fora da tela ao aliado estar caído e fora da tela. | Recursos conferidos e testes automatizados; comportamento adicional dos aliados ainda sem confirmação em partida. |
+| **V4 — inimigos e aliados normais** | Inclui a V3 e oculta marcadores normais, nomes e distâncias de aliados. Preserva o gauge/símbolo de aliado caído e condiciona as duas setas fora da tela ao aliado estar caído e fora da tela. | Recursos conferidos, testes automatizados e funcionamento confirmado em teste em partida relatado pelo criador. |
 
 A V4 também oculta nomes e distâncias de aliados enquanto estão caídos. O que permanece é o gauge/símbolo de caído e as setas condicionais fora da tela, não esses textos. O mod atua nos recursos de HUD inspecionados; não promete remover todas as categorias de marcador. Os marcadores de tiro sincronizado (Sync Shot) estão fora da lista de alvos.
 
@@ -42,7 +42,7 @@ O aplicativo confere os hashes antes de instalar ou restaurar. Alterações desc
 
 - A compatibilidade depende dos hashes dos recursos inspecionados, não de uma promessa de suporte a todas as versões ou lojas do jogo.
 - Versões desconhecidas dos recursos são recusadas. Uma atualização do jogo ou outro mod que altere os mesmos arquivos pode exigir nova análise.
-- O resultado em partida da V3 não valida todos os estados do jogo. As alterações de aliados da V4 ainda exigem teste em partida.
+- Os testes em partida relatados de V3 e V4 não validam todos os estados ou versões do jogo.
 - Os testes automatizados verificam manipulação de arquivos, limites das alterações e comportamento do aplicativo. Eles não executam o jogo nem comprovam o resultado visual.
 
 ## Executar ou compilar a partir do código
@@ -79,6 +79,10 @@ gcc -O2 -shared -static-libgcc third_party/minilzo/minilzo.c -o minilzo.dll
 Os testes públicos usam dados sintéticos quando possível. Os testes que dependem de arquivos proprietários do jogo são ignorados quando esses arquivos não estão presentes; esses dados não são distribuídos. O CI também gera o executável e confere seu runtime sem abrir ou alterar uma instalação do jogo. Um CI aprovado não equivale à validação em partida.
 
 Consulte [CONTRIBUTING.md](CONTRIBUTING.md) para conhecer as restrições das alterações e relatar problemas.
+
+## Isenção de responsabilidade
+
+Use o mod por sua conta e risco. Ele é fornecido **no estado em que se encontra, sem garantia**. Na medida permitida pela lei, o autor e os colaboradores não se responsabilizam por danos ou perdas decorrentes do uso, incluindo perda de arquivos/saves, falhas do jogo ou sanções de plataformas. Preserve seus backups e cumpra as regras do jogo e da plataforma. Consulte a [isenção completa](DISCLAIMER.md), que preserva os direitos legais obrigatórios e os termos da GPL.
 
 ## Licença
 

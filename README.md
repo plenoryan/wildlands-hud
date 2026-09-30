@@ -4,14 +4,14 @@
 
 [Português (Brasil)](README.pt-BR.md) · [Project website](https://plenoryan.github.io/wildlands-hud/) · [Download v0.4.0](https://github.com/plenoryan/wildlands-hud/releases/download/v0.4.0/WildlandsHUD.zip) · [Release notes](CHANGELOG.md)
 
-**v0.4.0 is a prerelease.** V3 was confirmed working in a reported gameplay test. V4’s additional ally behavior is experimental and still needs in-game confirmation, including downed allies outside the screen and after revival.
+**V3 and V4 have been confirmed working in reported gameplay tests by the creator.** v0.4.0 remains the first public prerelease; these reports do not establish compatibility with every installation, game version or game state.
 
 ## Choose a mode
 
 | Mode | Behavior | Validation |
 | --- | --- | --- |
 | **V3 — enemies only** | Hides the targeted enemy icons, distance labels, circles and pulses. | Confirmed in a reported gameplay test. |
-| **V4 — enemies and normal allies** | Includes V3 and hides normal ally markers, names and distances. Preserves the downed-ally gauge/symbol and makes the two off-screen arrows conditional on the ally being downed and off-screen. | Resource checks and automated tests; additional ally behavior not yet confirmed in gameplay. |
+| **V4 — enemies and normal allies** | Includes V3 and hides normal ally markers, names and distances. Preserves the downed-ally gauge/symbol and makes the two off-screen arrows conditional on the ally being downed and off-screen. | Resource checks, automated tests and a reported gameplay confirmation by the creator. |
 
 V4 also hides ally names and distances while they are downed. Preservation refers to the downed-ally gauge/symbol and conditional off-screen arrows, not those text labels. The tool targets inspected HUD resources; it does not claim to remove every marker category. Sync Shot markers are outside its target list.
 
@@ -42,7 +42,7 @@ The app verifies hashes before installing or restoring. It refuses unknown chang
 
 - Compatibility is determined by the hashes of the inspected resources, not a promise of support for every game version or storefront.
 - Unknown resource versions are rejected. A game update or another mod that changes the same archives can require a new compatibility review.
-- V3’s gameplay result does not validate every game state. V4’s ally changes still require gameplay testing.
+- Reported V3 and V4 gameplay confirmations do not validate every game state or version.
 - Automated tests check file handling, patch boundaries and application behavior. They do not run the game or prove the rendered result.
 
 ## Run or build from source
@@ -79,6 +79,10 @@ gcc -O2 -shared -static-libgcc third_party/minilzo/minilzo.c -o minilzo.dll
 Public tests use synthetic data where possible. Tests requiring proprietary game fixtures are skipped when those files are absent; the fixtures are not distributed. CI also builds the executable and checks its bundled runtime without opening or changing a game installation. A passing CI run is not in-game validation.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for the patching constraints and how to report a problem.
+
+## Disclaimer
+
+Use this mod at your own risk. It is provided **as is, without warranty**. To the extent permitted by applicable law, the author and contributors are not liable for damage or loss arising from its use, including file/save loss, game failures or platform sanctions. Keep your backups and follow the game and platform rules. See the [full disclaimer](DISCLAIMER.md), which preserves mandatory legal rights and the GPL terms.
 
 ## License
 
