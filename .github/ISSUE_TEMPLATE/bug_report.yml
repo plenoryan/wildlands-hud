@@ -1,0 +1,46 @@
+name: Bug report / Relatar problema
+description: Report an installation, restoration or HUD issue. English or Portuguese is welcome.
+title: "[Bug] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please do not upload game archives, extracted resources or save files. Redact personal paths from error messages. If restoration failed, preserve your backups and installation records.
+        Você pode responder em português. Não envie arquivos do jogo, recursos extraídos ou saves. Se a restauração falhou, preserve seus backups e registros.
+  - type: input
+    id: release
+    attributes:
+      label: App release / Versão do aplicativo
+      placeholder: v0.4.0
+    validations:
+      required: true
+  - type: dropdown
+    id: mode
+    attributes:
+      label: Mode / Opção
+      options:
+        - V3 — enemies only / somente inimigos
+        - V4 — enemies and normal allies / inimigos e aliados normais
+        - Not applicable / Não se aplica
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Windows and game version / Windows e versão do jogo
+      description: Include the game storefront and build if known. / Inclua a loja e a versão do jogo, se souber.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps and result / Passos e resultado
+      description: What happened, and what did you expect? For V4, note whether the ally was downed, off-screen or just revived.
+      placeholder: "1. …"
+    validations:
+      required: true
+  - type: textarea
+    id: error
+    attributes:
+      label: Exact error text / Texto exato do erro
+      description: Optional; remove personal paths or account details. / Opcional; remova caminhos pessoais ou dados de conta.

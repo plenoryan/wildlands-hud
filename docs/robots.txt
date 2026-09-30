@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /wildlands-hud/
+
+Sitemap: https://plenoryan.github.io/wildlands-hud/sitemap.xml
