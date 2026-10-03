@@ -61,18 +61,130 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Como instalar o mod Wildlands HUD?",
+          "name": "Como ocultar a metragem do inimigo no Wildlands?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Baixe e extraia WildlandsHUD.zip, feche o jogo e execute WildlandsHUD.exe como administrador. Clique em Escolher… para selecionar a pasta de instalação do jogo, marque o que deseja ocultar e clique em Aplicar mod. Não é necessário instalar Python."
+            "text": "Na categoria Personagens e equipamentos, marque “Inimigos: ícones, nomes, distâncias e pulsos” e aplique o mod com o jogo fechado. Essa opção reúne a distância em metros sobre os inimigos, seus nomes, ícones, círculos e pulsos de marcação. Não existe uma caixa separada para retirar apenas a metragem e manter os demais indicadores hostis."
           }
         },
         {
           "@type": "Question",
-          "name": "Como restaurar os arquivos originais do jogo?",
+          "name": "Como esconder o marcador do gerador e de equipamentos inimigos?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Feche o jogo, abra o instalador como administrador, selecione a mesma pasta do jogo e clique em Restaurar originais. Os backups ficam ao lado dos arquivos alterados com o sufixo .phoenixhud.original. Os registros locais ficam em %LOCALAPPDATA%\\WildlandsHUD. Preserve os backups para poder restaurar."
+            "text": "Marque “Objetos: geradores, alarmes, minas e afins”. A opção oculta ícone, nome e distância dos objetos atendidos pelo marcador compartilhado do jogo, incluindo geradores e equipamentos inimigos. Também afeta minas próprias e outros objetos desse grupo; não permite escolher apenas geradores. Os equipamentos continuam no cenário e mantêm suas funções."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Como remover marcadores de aliados e manter o aliado caído?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Marque “Aliados normais: ícones, nomes e distâncias”. O mod preserva o símbolo/medidor de aliado caído e suas setas condicionais fora da tela. Os nomes e as distâncias dos aliados ficam ocultos inclusive quando estão caídos. O indicador de caído é protegido e não tem uma caixa para ser removido."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Posso manter os pings e os pontos marcados manualmente?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sim. Deixe “Pings e pontos manuais” desmarcado, como no padrão. Assim você mantém esses marcadores mesmo ocultando inimigos e objetivos. Para ocultar também pings e pontos manuais, marque essa opção em Marcadores no cenário. Ela controla a exibição, não a capacidade de criar um ponto."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Como ocultar marcadores de missão, objetivos e atividades?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Marque “Objetivos e atividades”, em Marcadores no cenário. Essa seleção esconde os indicadores desse grupo no cenário sem concluir, excluir ou alterar a missão. Fica marcada por padrão e é independente dos pings; não é uma opção para apagar todo o mapa ou o menu de missões."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Como tirar os indicadores de coleta, recursos e recompensas?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Use “Coleta e recompensas” para ocultar os marcadores de itens colecionáveis, recursos e recompensas atendidos por esse grupo. Os itens continuam no jogo. A opção vem marcada por padrão e pode ser desmarcada sem restaurar todos os outros marcadores."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Como ocultar indicadores de locais e sinais de rádio?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Marque “Locais e sinais de rádio” para esconder esses marcadores no cenário. Essa opção vem marcada por padrão. Ela altera os indicadores visuais desse grupo, não o áudio do rádio nem a existência dos locais."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Como esconder os marcadores de tiro sincronizado?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Marque “Tiro sincronizado” para ocultar os marcadores visuais de sync shot. A caixa vem marcada por padrão. Isso não é uma opção para desativar a mecânica do tiro sincronizado nem alterar o comportamento dos companheiros."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Posso ocultar alertas no cenário e pontos de captura?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sim. “Alertas no cenário e pontos de captura” controla os marcadores visuais desse grupo e vem marcado por padrão. Não significa remover todos os avisos do jogo: os pedidos de interação, como “aperte X”, continuam protegidos."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Como ocultar a ajuda visual do drone para localizar inimigos?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Em Drone e binóculo, marque “Ajuda visual de localização / identificação”. Ela controla os indicadores visuais de varredura, identificação e círculos compartilhados por drone e binóculo. Vem marcada por padrão. Para esconder também os marcadores sobre os inimigos, mantenha a opção Inimigos marcada. O mod não impede a marcação automática do jogo nem muda a inteligência dos inimigos."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Como manter as informações do binóculo e do drone?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Deixe “Informações de uso do binóculo e drone” desmarcado. Essa é a configuração padrão e pode ser combinada com a ajuda visual de localização oculta. Marque essa caixa apenas se quiser ocultar também a interface operacional desses equipamentos. Drone e binóculo compartilham recursos, portanto não têm seletores operacionais separados; os avisos de interação continuam preservados."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Como ocultar o minimapa sem remover o restante do HUD?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Em Interface de uso, marque “Minimapa” e mantenha desmarcadas as outras informações que deseja ver. O minimapa fica visível por padrão. A opção não apaga o mapa do menu nem modifica o terreno do jogo."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Como tirar a mira da tela no Ghost Recon Wildlands?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Marque “Mira”, em Interface de uso, para ocultar os elementos de mira atendidos pelo mod. Deixe a caixa desmarcada para preservá-los, como no padrão. A seleção controla o HUD; não altera precisão, recuo, dano ou comportamento das armas."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Como ocultar informações de armas e munição?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Marque “Informações de armas e munição” para retirar esse grupo da interface. Por padrão a caixa fica desmarcada e as informações são mantidas. Ocultar o contador não fornece munição infinita nem modifica a quantidade disponível."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Como atualizar o mod ou mudar minhas escolhas?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Feche o jogo, abra o instalador atual, selecione a mesma pasta, ajuste as caixas e clique em Aplicar mod. O aplicativo procura o registro anterior automaticamente. Se pedir, use “Já uso o mod: selecionar registro anterior…” e escolha o manifest.json da instalação anterior. “Voltar à seleção padrão” apenas redefine as caixas; é preciso aplicar para alterar o jogo."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Como ajudar o projeto e acompanhar novidades?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Você pode acompanhar as releases no GitHub, compartilhar este guia e relatar problemas informando a versão do mod e as caixas selecionadas. Relatos do que funcionou em partida também ajudam a documentar os limites de cada opção."
           }
         },
         {
@@ -80,15 +192,47 @@
           "name": "Quais versões do jogo são compatíveis?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "O Wildlands HUD aceita arquivos do jogo com hashes reconhecidos. O instalador recusa versões desconhecidas dos arquivos. A compatibilidade com todas as atualizações ou com outros mods não é garantida; consulte as notas da versão v0.7.0."
+            "text": "O instalador compara os arquivos do jogo com hashes suportados e recusa versões desconhecidas. Uma atualização ou outro mod pode alterar esses arquivos. A compatibilidade com todas as edições ou atualizações não é garantida; consulte os detalhes nas notas da versão v0.7.0."
           }
         },
         {
           "@type": "Question",
-          "name": "Escolha o que ocultar.",
+          "name": "Como funcionam os backups e a restauração?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Quatro categorias com seleção total ou parcial e 14 opções individuais. Por padrão, pings e pontos manuais ficam visíveis; objetivos e ajuda visual de localização ficam ocultos. Aliado caído, interação e informações de uso são preservados. Ocultar indicadores não desativa a marcação automática do jogo."
+            "text": "As cópias originais ficam ao lado dos arquivos alterados, com o sufixo .phoenixhud.original. Os registros locais ficam em %LOCALAPPDATA%\\WildlandsHUD. Preserve os backups: o botão Restaurar originais usa essas cópias para restaurar os arquivos. Feche o jogo e selecione a mesma pasta de instalação antes de restaurar."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "O aliado caído continua visível?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sim. O símbolo/medidor e as setas condicionais são preservados. Com aliados normais ocultos, os nomes/distâncias dos caídos também ficam ocultos."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "O mod remove o minimapa ou o HUD inteiro?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Você pode ocultar minimapa, mira e informações de armas separadamente, mas eles ficam visíveis por padrão. O padrão oculta inimigos, equipamentos, aliados normais, objetivos e ajuda visual de localização; mantém pings, informações operacionais de drone/binóculo, interação e aliado caído. Não é um interruptor para apagar toda a interface do jogo."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Posso usar no multiplayer?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "O projeto não declara segurança no multiplayer nem compatibilidade com sistemas anti-cheat. Ele não oferece bypass de anti-cheat. “Instalador offline” significa que a instalação não depende de um serviço online; isso não é uma afirmação sobre os modos de jogo suportados."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "O Wildlands HUD é grátis e tem código aberto?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sim. O Wildlands HUD é um projeto gratuito da comunidade. Seu código-fonte está disponível sob a GNU General Public License, versão 2 ou posterior (GPL-2.0-or-later). Não é afiliado, endossado ou um produto oficial da Ubisoft."
           }
         }
       ]
@@ -101,7 +245,7 @@
   <header class="site-header">
     <nav class="nav container" aria-label="Navegação principal">
       <a class="brand" href="./" aria-label="Wildlands HUD, início"><img src="../assets/favicon.svg" width="40" height="40" alt=""><span>WILDLANDS HUD<small>MOD DA COMUNIDADE</small></span></a>
-      <div class="nav-links"><a href="#modes">Opções</a><a href="#install">Instalação</a><a href="#faq">Dúvidas</a><a class="nav-download" href="https://github.com/plenoryan/wildlands-hud/releases/download/v0.7.0/WildlandsHUD.zip">Baixar <span class="arrow" aria-hidden="true">↓</span></a></div>
+      <div class="nav-links"><a href="#modes">Opções</a><a href="#guide">Guia</a><a href="#install">Instalação</a><a href="#faq">Dúvidas</a><a class="nav-download" href="https://github.com/plenoryan/wildlands-hud/releases/download/v0.7.0/WildlandsHUD.zip">Baixar <span class="arrow" aria-hidden="true">↓</span></a></div>
       <div class="language" aria-label="Idioma"><a href="../" lang="en" aria-label="English">EN</a><span aria-hidden="true">/</span><a href="./" lang="pt-BR" aria-current="page" aria-label="Português brasileiro">PT-BR</a></div>
     </nav>
   </header>
@@ -126,6 +270,22 @@
     </section>
     <div class="spec-strip container" aria-label="Informações rápidas"><div class="spec"><small>Plataforma</small><strong>Windows <span>/ 64 bits</span></strong></div><div class="spec"><small>Instalação</small><strong>Instalador offline</strong></div><div class="spec"><small>Dependências</small><strong>Não precisa de Python</strong></div><div class="spec"><small>Para voltar</small><strong>Restaure os originais</strong></div></div>
     <section class="section container" id="modes" aria-labelledby="modes-title"><div class="section-header"><h2 class="section-title" id="modes-title">Categorias e itens.</h2></div><div class="mode-grid"><article class="mode-card"><h3>Personagens e equipamentos</h3><ul class="feature-list"><li>Inimigos: ícones, nomes, distâncias e pulsos — <strong>ocultar</strong></li><li>Objetos: geradores, alarmes, minas e afins — <strong>ocultar</strong></li><li>Aliados normais: ícones, nomes e distâncias — <strong>ocultar</strong></li></ul></article><article class="mode-card"><h3>Marcadores no cenário</h3><ul class="feature-list"><li>Pings e pontos manuais — <strong>manter</strong></li><li>Objetivos e atividades — <strong>ocultar</strong></li><li>Coleta e recompensas — <strong>ocultar</strong></li><li>Locais e sinais de rádio — <strong>ocultar</strong></li><li>Tiro sincronizado — <strong>ocultar</strong></li><li>Alertas no cenário e pontos de captura — <strong>ocultar</strong></li></ul></article><article class="mode-card"><h3>Drone e binóculo</h3><ul class="feature-list"><li>Ajuda visual de localização / identificação — <strong>ocultar</strong></li><li>Informações de uso do binóculo e drone — <strong>manter</strong></li></ul></article><article class="mode-card"><h3>Interface de uso</h3><ul class="feature-list"><li>Minimapa — <strong>manter</strong></li><li>Mira — <strong>manter</strong></li><li>Informações de armas e munição — <strong>manter</strong></li></ul></article></div><p class="scope-note">Quatro categorias com seleção total ou parcial e 14 opções individuais. Por padrão, pings e pontos manuais ficam visíveis; objetivos e ajuda visual de localização ficam ocultos. Aliado caído, interação e informações de uso são preservados. Ocultar indicadores não desativa a marcação automática do jogo.</p></section>
+    <section class="section container hud-guide" id="guide" aria-labelledby="guide-title"><h2 class="section-title" id="guide-title">Como configurar o HUD do Wildlands</h2><p class="section-intro">Escolha uma categoria inteira ou apenas alguns itens. Caixa marcada significa ocultar; desmarcada significa manter. Depois de selecionar, clique em Aplicar mod com o jogo fechado. As 14 opções abaixo são as do instalador 0.7.0.</p><p class="guide-note">A edição configurável é experimental e ainda precisa de confirmação visual em partida. Os testes de arquivos e do instalador não comprovam todos os estados do HUD. Cada resposta descreve o alcance da opção, sem prometer compatibilidade com toda versão do jogo.</p><div class="faq-list">
+<details id="guide-enemies" open><summary>Como ocultar a metragem do inimigo no Wildlands?</summary><p>Na categoria Personagens e equipamentos, marque “Inimigos: ícones, nomes, distâncias e pulsos” e aplique o mod com o jogo fechado. Essa opção reúne a distância em metros sobre os inimigos, seus nomes, ícones, círculos e pulsos de marcação. Não existe uma caixa separada para retirar apenas a metragem e manter os demais indicadores hostis.</p></details>
+<details id="guide-objects"><summary>Como esconder o marcador do gerador e de equipamentos inimigos?</summary><p>Marque “Objetos: geradores, alarmes, minas e afins”. A opção oculta ícone, nome e distância dos objetos atendidos pelo marcador compartilhado do jogo, incluindo geradores e equipamentos inimigos. Também afeta minas próprias e outros objetos desse grupo; não permite escolher apenas geradores. Os equipamentos continuam no cenário e mantêm suas funções.</p></details>
+<details id="guide-allies"><summary>Como remover marcadores de aliados e manter o aliado caído?</summary><p>Marque “Aliados normais: ícones, nomes e distâncias”. O mod preserva o símbolo/medidor de aliado caído e suas setas condicionais fora da tela. Os nomes e as distâncias dos aliados ficam ocultos inclusive quando estão caídos. O indicador de caído é protegido e não tem uma caixa para ser removido.</p></details>
+<details id="guide-pings"><summary>Posso manter os pings e os pontos marcados manualmente?</summary><p>Sim. Deixe “Pings e pontos manuais” desmarcado, como no padrão. Assim você mantém esses marcadores mesmo ocultando inimigos e objetivos. Para ocultar também pings e pontos manuais, marque essa opção em Marcadores no cenário. Ela controla a exibição, não a capacidade de criar um ponto.</p></details>
+<details id="guide-objectives"><summary>Como ocultar marcadores de missão, objetivos e atividades?</summary><p>Marque “Objetivos e atividades”, em Marcadores no cenário. Essa seleção esconde os indicadores desse grupo no cenário sem concluir, excluir ou alterar a missão. Fica marcada por padrão e é independente dos pings; não é uma opção para apagar todo o mapa ou o menu de missões.</p></details>
+<details id="guide-collectibles"><summary>Como tirar os indicadores de coleta, recursos e recompensas?</summary><p>Use “Coleta e recompensas” para ocultar os marcadores de itens colecionáveis, recursos e recompensas atendidos por esse grupo. Os itens continuam no jogo. A opção vem marcada por padrão e pode ser desmarcada sem restaurar todos os outros marcadores.</p></details>
+<details id="guide-locations"><summary>Como ocultar indicadores de locais e sinais de rádio?</summary><p>Marque “Locais e sinais de rádio” para esconder esses marcadores no cenário. Essa opção vem marcada por padrão. Ela altera os indicadores visuais desse grupo, não o áudio do rádio nem a existência dos locais.</p></details>
+<details id="guide-syncshot"><summary>Como esconder os marcadores de tiro sincronizado?</summary><p>Marque “Tiro sincronizado” para ocultar os marcadores visuais de sync shot. A caixa vem marcada por padrão. Isso não é uma opção para desativar a mecânica do tiro sincronizado nem alterar o comportamento dos companheiros.</p></details>
+<details id="guide-world_warnings"><summary>Posso ocultar alertas no cenário e pontos de captura?</summary><p>Sim. “Alertas no cenário e pontos de captura” controla os marcadores visuais desse grupo e vem marcado por padrão. Não significa remover todos os avisos do jogo: os pedidos de interação, como “aperte X”, continuam protegidos.</p></details>
+<details id="guide-scanning"><summary>Como ocultar a ajuda visual do drone para localizar inimigos?</summary><p>Em Drone e binóculo, marque “Ajuda visual de localização / identificação”. Ela controla os indicadores visuais de varredura, identificação e círculos compartilhados por drone e binóculo. Vem marcada por padrão. Para esconder também os marcadores sobre os inimigos, mantenha a opção Inimigos marcada. O mod não impede a marcação automática do jogo nem muda a inteligência dos inimigos.</p></details>
+<details id="guide-optics"><summary>Como manter as informações do binóculo e do drone?</summary><p>Deixe “Informações de uso do binóculo e drone” desmarcado. Essa é a configuração padrão e pode ser combinada com a ajuda visual de localização oculta. Marque essa caixa apenas se quiser ocultar também a interface operacional desses equipamentos. Drone e binóculo compartilham recursos, portanto não têm seletores operacionais separados; os avisos de interação continuam preservados.</p></details>
+<details id="guide-minimap"><summary>Como ocultar o minimapa sem remover o restante do HUD?</summary><p>Em Interface de uso, marque “Minimapa” e mantenha desmarcadas as outras informações que deseja ver. O minimapa fica visível por padrão. A opção não apaga o mapa do menu nem modifica o terreno do jogo.</p></details>
+<details id="guide-crosshair"><summary>Como tirar a mira da tela no Ghost Recon Wildlands?</summary><p>Marque “Mira”, em Interface de uso, para ocultar os elementos de mira atendidos pelo mod. Deixe a caixa desmarcada para preservá-los, como no padrão. A seleção controla o HUD; não altera precisão, recuo, dano ou comportamento das armas.</p></details>
+<details id="guide-weapons"><summary>Como ocultar informações de armas e munição?</summary><p>Marque “Informações de armas e munição” para retirar esse grupo da interface. Por padrão a caixa fica desmarcada e as informações são mantidas. Ocultar o contador não fornece munição infinita nem modifica a quantidade disponível.</p></details>
+</div><p><a href="#install">Ver os passos de instalação</a> · <a href="#restore">Como restaurar o HUD original</a></p></section>
     <section class="section section-install" id="install" aria-labelledby="install-title">
       <div class="container install-grid">
         <div><p class="section-kicker">02 / Prepare seu jogo</p><h2 class="section-title" id="install-title">Baixe.<br>Escolha. Aplique.</h2><p class="section-intro">Um instalador offline com caixas de seleção e a opção de restaurar os arquivos originais.</p><p class="requirements"><strong>Antes de começar</strong><br>Windows 64 bits · Ghost Recon Wildlands instalado<br>Recomendado: 9 GB de espaço livre em disco<br>Acesso de administrador · Jogo fechado</p><a class="button" href="https://github.com/plenoryan/wildlands-hud/releases/download/v0.7.0/WildlandsHUD.zip">Baixar WildlandsHUD.zip <span class="arrow" aria-hidden="true">↓</span></a></div>
@@ -135,10 +295,12 @@
     <section class="section container faq-layout" id="faq" aria-labelledby="faq-title">
       <div class="faq-intro"><p class="section-kicker">03 / Notas de campo</p><h2 class="section-title" id="faq-title">Bom saber<br>antes de jogar.</h2><p>Compatibilidade, backups e o que esta versão realmente muda.</p><a class="text-link" href="https://github.com/plenoryan/wildlands-hud/issues">Relatar um problema no GitHub <span class="arrow" aria-hidden="true">↗</span></a></div>
       <div class="faq-list">
+<details><summary>Como atualizar o mod ou mudar minhas escolhas?</summary><p>Feche o jogo, abra o instalador atual, selecione a mesma pasta, ajuste as caixas e clique em Aplicar mod. O aplicativo procura o registro anterior automaticamente. Se pedir, use “Já uso o mod: selecionar registro anterior…” e escolha o manifest.json da instalação anterior. “Voltar à seleção padrão” apenas redefine as caixas; é preciso aplicar para alterar o jogo.</p></details>
+<details><summary>Como ajudar o projeto e acompanhar novidades?</summary><p>Você pode acompanhar as releases no GitHub, compartilhar este guia e relatar problemas informando a versão do mod e as caixas selecionadas. Relatos do que funcionou em partida também ajudam a documentar os limites de cada opção.</p></details>
         <details open><summary>Quais versões do jogo são compatíveis?</summary><p>O instalador compara os arquivos do jogo com hashes suportados e recusa versões desconhecidas. Uma atualização ou outro mod pode alterar esses arquivos. A compatibilidade com todas as edições ou atualizações não é garantida; consulte os detalhes nas <a href="https://github.com/plenoryan/wildlands-hud/releases/tag/v0.7.0">notas da versão v0.7.0</a>.</p></details>
         <details id="restore"><summary>Como funcionam os backups e a restauração?</summary><p>As cópias originais ficam ao lado dos arquivos alterados, com o sufixo <code>.phoenixhud.original</code>. Os registros locais ficam em <code>%LOCALAPPDATA%\WildlandsHUD</code>. Preserve os backups: o botão <span class="ui-label">Restaurar originais</span> usa essas cópias para restaurar os arquivos. Feche o jogo e selecione a mesma pasta de instalação antes de restaurar.</p></details>
         <details><summary>O aliado caído continua visível?</summary><p>Sim. O símbolo/medidor e as setas condicionais são preservados. Com aliados normais ocultos, os nomes/distâncias dos caídos também ficam ocultos.</p></details>
-        <details><summary>O mod remove o minimapa ou o HUD inteiro?</summary><p>Agora com caixas de seleção. Por padrão, apenas marcadores no cenário ficam ocultos. Binóculo, drone, interação, mira, minimapa e munição são preservados. Aliado caído permanece visível. Edição experimental: confirmação em partida pendente.</p></details>
+        <details><summary>O mod remove o minimapa ou o HUD inteiro?</summary><p>Você pode ocultar minimapa, mira e informações de armas separadamente, mas eles ficam visíveis por padrão. O padrão oculta inimigos, equipamentos, aliados normais, objetivos e ajuda visual de localização; mantém pings, informações operacionais de drone/binóculo, interação e aliado caído. Não é um interruptor para apagar toda a interface do jogo.</p></details>
         <details><summary>Posso usar no multiplayer?</summary><p>O projeto não declara segurança no multiplayer nem compatibilidade com sistemas anti-cheat. Ele não oferece bypass de anti-cheat. “Instalador offline” significa que a instalação não depende de um serviço online; isso não é uma afirmação sobre os modos de jogo suportados.</p></details>
         <details><summary>O Wildlands HUD é grátis e tem código aberto?</summary><p>Sim. O Wildlands HUD é um projeto gratuito da comunidade. Seu <a href="https://github.com/plenoryan/wildlands-hud">código-fonte</a> está disponível sob a GNU General Public License, versão 2 ou posterior (GPL-2.0-or-later). Não é afiliado, endossado ou um produto oficial da Ubisoft.</p></details>
       </div>

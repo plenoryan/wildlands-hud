@@ -61,18 +61,130 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "How do I install the Wildlands HUD mod?",
+          "name": "How do I hide enemy distance markers in Wildlands?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Download and extract WildlandsHUD.zip, close the game, and run WildlandsHUD.exe as administrator. Use Escolher… to select the game installation folder, choose which categories to hide, then click Aplicar mod. The installer UI is in Portuguese. Python is not required."
+            "text": "Under Characters and equipment, check “Inimigos: ícones, nomes, distâncias e pulsos” and apply with the game closed. This option groups enemy distances in meters, names, icons, marking circles and pulses. There is no separate distance-only switch that retains the other enemy indicators."
           }
         },
         {
           "@type": "Question",
-          "name": "How do I restore the original game files?",
+          "name": "How do I remove generator and enemy equipment markers?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Close the game, open the installer as administrator, select the same game folder, and click Restaurar originais. Original backups are saved beside the patched files with the .phoenixhud.original suffix. Local patch records are kept in %LOCALAPPDATA%\\WildlandsHUD. Keep these backups for restoration."
+            "text": "Check “Objetos: geradores, alarmes, minas e afins” to hide icons, names and distances handled by the shared object marker, including generators and enemy equipment. This also affects player mines and other objects in that group; generators cannot be selected separately. The equipment remains in the world and keeps its functions."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I hide teammate markers but keep downed allies visible?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Check “Aliados normais: ícones, nomes e distâncias”. The downed-ally symbol/gauge and conditional off-screen arrows are retained. Ally names and distances are hidden even when an ally is downed. The downed indicator is protected and has no removal checkbox."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I keep pings and manual waypoints visible?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Leave “Pings e pontos manuais” unchecked, as it is by default. These markers can remain while enemies and objectives are hidden. Check it under World markers to hide pings and manual waypoints too. This controls their display, not the ability to create a point."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I hide mission, objective and activity markers?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Check “Objetivos e atividades” under World markers. It hides the group’s in-world indicators without completing, deleting or changing missions. It is checked by default and independent of pings; it does not remove the full map or mission menu."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I hide collectible, resource and reward markers?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Check “Coleta e recompensas” to hide the collectible, resource and reward markers covered by this group. The items remain in the game. It is checked by default and can be unchecked without restoring every other marker."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I hide location and radio signal indicators?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Check “Locais e sinais de rádio” to hide those in-world markers. It is checked by default. It changes this group’s visual indicators, not radio audio or the locations themselves."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I hide sync shot markers?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Check “Tiro sincronizado” to hide visual sync shot markers. It is checked by default. This does not disable the sync shot mechanic or change companion behavior."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I hide world warnings and capture point markers?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. “Alertas no cenário e pontos de captura” controls this group’s visual markers and is checked by default. It does not remove every game notification: interaction prompts such as “press X” remain protected."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I hide drone enemy locating indicators?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Under Drone and binoculars, check “Ajuda visual de localização / identificação”. It controls visual scanning, identification indicators and circles shared by the drone and binoculars, and is checked by default. Keep Enemies checked to hide the markers over enemies as well. The mod does not prevent automatic game tagging or change enemy intelligence."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I keep binocular and drone information?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Leave “Informações de uso do binóculo e drone” unchecked. This default can be combined with hidden visual locating assistance. Check it only if you also want to hide the equipment’s operational interface. Drone and binoculars share resources, so there are no separate operational switches; interaction prompts remain protected."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I hide the minimap without removing the rest of the HUD?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Under Operational interface, check “Minimapa” and leave the other information you want unchecked. The minimap is visible by default. This does not remove the menu map or modify the game terrain."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I remove the crosshair in Ghost Recon Wildlands?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Check “Mira” under Operational interface to hide the crosshair elements covered by the mod. Leave it unchecked to retain them, as in the defaults. It controls HUD elements, not accuracy, recoil, damage or weapon behavior."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I hide weapon and ammunition information?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Check “Informações de armas e munição” to hide this interface group. It is unchecked by default, retaining the information. Hiding the counter does not grant unlimited ammunition or change the available amount."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I update the mod or change my choices?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Close the game, open the current installer, select the same folder, adjust the checkboxes and click Aplicar mod. The app looks for the previous installation record automatically. If requested, use “Já uso o mod: selecionar registro anterior…” to select the previous manifest.json. “Voltar à seleção padrão” resets the checkboxes only; apply to change the game."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How can I help the project and follow updates?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Follow releases on GitHub, share this guide and report issues with the mod version and selected checkboxes. Reports of what worked in gameplay also help document each option’s limits."
           }
         },
         {
@@ -80,15 +192,47 @@
           "name": "Which game versions are compatible?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Wildlands HUD supports recognized game file hashes. The installer refuses unknown file versions. Compatibility with every game update or another mod is not guaranteed; review the v0.7.0 release notes."
+            "text": "The installer checks game files against supported hashes and refuses unknown versions. A different game update or another mod may change those files. Compatibility with every edition or update is not guaranteed; check the v0.7.0 release notes for the release details."
           }
         },
         {
           "@type": "Question",
-          "name": "Choose what to hide.",
+          "name": "How do backups and restoration work?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Four categories with full or partial selection and 14 individual options. Defaults retain pings and manual waypoints, while hiding objectives and visual locating assistance. Downed allies, interaction and operational information are retained. Hiding indicators does not disable automatic game tagging."
+            "text": "Original copies are saved beside the patched files with the .phoenixhud.original suffix. Local patch records are kept in %LOCALAPPDATA%\\WildlandsHUD. Keep the backups: the Restaurar originais button uses them to restore the original files. Close the game and select the same installation folder before restoring."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are downed allies still indicated?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. The symbol/gauge and conditional off-screen arrows remain. Hiding normal allies also hides downed ally names/distances."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does it remove the minimap or the whole HUD?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You can hide the minimap, crosshair and weapon information independently, but they remain visible by default. Defaults hide enemies, equipment, normal allies, objectives and visual locating assistance; pings, operational drone/binocular information, interaction and downed allies remain. This is not a switch to remove every part of the game interface."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I use it in multiplayer?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "This project makes no claim of multiplayer safety or anti-cheat compatibility. It does not provide an anti-cheat bypass. An “offline installer” means installation does not require an online service; it is not a statement about supported game modes."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Wildlands HUD free and open source?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Wildlands HUD is a free community project. Its source code is available under the GNU General Public License, version 2 or later (GPL-2.0-or-later). It is not affiliated with, endorsed by, or an official product of Ubisoft."
           }
         }
       ]
@@ -102,7 +246,7 @@
     <nav class="nav container" aria-label="Main navigation">
       <a class="brand" href="./" aria-label="Wildlands HUD home"><img src="assets/favicon.svg" width="40" height="40" alt=""><span>WILDLANDS HUD<small>COMMUNITY MOD</small></span></a>
       <div class="nav-links">
-        <a href="#modes">The modes</a><a href="#install">Install</a><a href="#faq">FAQ</a>
+        <a href="#modes">Options</a><a href="#guide">Guide</a><a href="#install">Install</a><a href="#faq">FAQ</a>
         <a class="nav-download" href="https://github.com/plenoryan/wildlands-hud/releases/download/v0.7.0/WildlandsHUD.zip">Download <span class="arrow" aria-hidden="true">↓</span></a>
       </div>
       <div class="language" aria-label="Language"><a href="./" lang="en" aria-current="page" aria-label="English">EN</a><span aria-hidden="true">/</span><a href="pt-br/" lang="pt-BR" aria-label="Português brasileiro">PT-BR</a></div>
@@ -138,6 +282,22 @@
       <div class="spec"><small>Built for</small><strong>Windows <span>/ 64-bit</span></strong></div><div class="spec"><small>Setup</small><strong>Offline installer</strong></div><div class="spec"><small>Dependencies</small><strong>No Python needed</strong></div><div class="spec"><small>Going back</small><strong>Original-file restore</strong></div>
     </div>
     <section class="section container" id="modes" aria-labelledby="modes-title"><div class="section-header"><h2 class="section-title" id="modes-title">Categories and items.</h2></div><div class="mode-grid"><article class="mode-card"><h3>Characters and equipment</h3><ul class="feature-list"><li>Enemies: icons, names, distances and pulses — <strong>hide</strong></li><li>Objects: generators, alarms, mines and similar — <strong>hide</strong></li><li>Normal allies: icons, names and distances — <strong>hide</strong></li></ul></article><article class="mode-card"><h3>World markers</h3><ul class="feature-list"><li>Pings and manual waypoints — <strong>keep</strong></li><li>Objectives and activities — <strong>hide</strong></li><li>Collectibles and rewards — <strong>hide</strong></li><li>Locations and radio signals — <strong>hide</strong></li><li>Sync shot — <strong>hide</strong></li><li>World warnings and capture points — <strong>hide</strong></li></ul></article><article class="mode-card"><h3>Drone and binoculars</h3><ul class="feature-list"><li>Visual locating / identification assistance — <strong>hide</strong></li><li>Operational binocular and drone information — <strong>keep</strong></li></ul></article><article class="mode-card"><h3>Operational interface</h3><ul class="feature-list"><li>Minimap — <strong>keep</strong></li><li>Crosshair — <strong>keep</strong></li><li>Weapon and ammunition information — <strong>keep</strong></li></ul></article></div><p class="scope-note">Four categories with full or partial selection and 14 individual options. Defaults retain pings and manual waypoints, while hiding objectives and visual locating assistance. Downed allies, interaction and operational information are retained. Hiding indicators does not disable automatic game tagging.</p></section>
+    <section class="section container hud-guide" id="guide" aria-labelledby="guide-title"><h2 class="section-title" id="guide-title">How to customize the Wildlands HUD</h2><p class="section-intro">Select a whole category or individual items. Checked means hide; unchecked means keep. Apply with the game closed after making your choices. These are the 14 options in installer 0.7.0; its checkbox labels are in Portuguese.</p><p class="guide-note">The configurable edition is experimental and still needs visual gameplay confirmation. File and installer tests do not verify every HUD state. Each answer describes the option’s scope, without promising compatibility with every game version.</p><div class="faq-list">
+<details id="guide-enemies" open><summary>How do I hide enemy distance markers in Wildlands?</summary><p>Under Characters and equipment, check “Inimigos: ícones, nomes, distâncias e pulsos” and apply with the game closed. This option groups enemy distances in meters, names, icons, marking circles and pulses. There is no separate distance-only switch that retains the other enemy indicators.</p></details>
+<details id="guide-objects"><summary>How do I remove generator and enemy equipment markers?</summary><p>Check “Objetos: geradores, alarmes, minas e afins” to hide icons, names and distances handled by the shared object marker, including generators and enemy equipment. This also affects player mines and other objects in that group; generators cannot be selected separately. The equipment remains in the world and keeps its functions.</p></details>
+<details id="guide-allies"><summary>Can I hide teammate markers but keep downed allies visible?</summary><p>Check “Aliados normais: ícones, nomes e distâncias”. The downed-ally symbol/gauge and conditional off-screen arrows are retained. Ally names and distances are hidden even when an ally is downed. The downed indicator is protected and has no removal checkbox.</p></details>
+<details id="guide-pings"><summary>Can I keep pings and manual waypoints visible?</summary><p>Yes. Leave “Pings e pontos manuais” unchecked, as it is by default. These markers can remain while enemies and objectives are hidden. Check it under World markers to hide pings and manual waypoints too. This controls their display, not the ability to create a point.</p></details>
+<details id="guide-objectives"><summary>How do I hide mission, objective and activity markers?</summary><p>Check “Objetivos e atividades” under World markers. It hides the group’s in-world indicators without completing, deleting or changing missions. It is checked by default and independent of pings; it does not remove the full map or mission menu.</p></details>
+<details id="guide-collectibles"><summary>How do I hide collectible, resource and reward markers?</summary><p>Check “Coleta e recompensas” to hide the collectible, resource and reward markers covered by this group. The items remain in the game. It is checked by default and can be unchecked without restoring every other marker.</p></details>
+<details id="guide-locations"><summary>How do I hide location and radio signal indicators?</summary><p>Check “Locais e sinais de rádio” to hide those in-world markers. It is checked by default. It changes this group’s visual indicators, not radio audio or the locations themselves.</p></details>
+<details id="guide-syncshot"><summary>How do I hide sync shot markers?</summary><p>Check “Tiro sincronizado” to hide visual sync shot markers. It is checked by default. This does not disable the sync shot mechanic or change companion behavior.</p></details>
+<details id="guide-world_warnings"><summary>Can I hide world warnings and capture point markers?</summary><p>Yes. “Alertas no cenário e pontos de captura” controls this group’s visual markers and is checked by default. It does not remove every game notification: interaction prompts such as “press X” remain protected.</p></details>
+<details id="guide-scanning"><summary>How do I hide drone enemy locating indicators?</summary><p>Under Drone and binoculars, check “Ajuda visual de localização / identificação”. It controls visual scanning, identification indicators and circles shared by the drone and binoculars, and is checked by default. Keep Enemies checked to hide the markers over enemies as well. The mod does not prevent automatic game tagging or change enemy intelligence.</p></details>
+<details id="guide-optics"><summary>How do I keep binocular and drone information?</summary><p>Leave “Informações de uso do binóculo e drone” unchecked. This default can be combined with hidden visual locating assistance. Check it only if you also want to hide the equipment’s operational interface. Drone and binoculars share resources, so there are no separate operational switches; interaction prompts remain protected.</p></details>
+<details id="guide-minimap"><summary>How do I hide the minimap without removing the rest of the HUD?</summary><p>Under Operational interface, check “Minimapa” and leave the other information you want unchecked. The minimap is visible by default. This does not remove the menu map or modify the game terrain.</p></details>
+<details id="guide-crosshair"><summary>How do I remove the crosshair in Ghost Recon Wildlands?</summary><p>Check “Mira” under Operational interface to hide the crosshair elements covered by the mod. Leave it unchecked to retain them, as in the defaults. It controls HUD elements, not accuracy, recoil, damage or weapon behavior.</p></details>
+<details id="guide-weapons"><summary>How do I hide weapon and ammunition information?</summary><p>Check “Informações de armas e munição” to hide this interface group. It is unchecked by default, retaining the information. Hiding the counter does not grant unlimited ammunition or change the available amount.</p></details>
+</div><p><a href="#install">Installation steps</a> · <a href="#restore">Restore the original HUD</a></p></section>
     <section class="section section-install" id="install" aria-labelledby="install-title">
       <div class="container install-grid">
         <div><p class="section-kicker">02 / Get into the game</p><h2 class="section-title" id="install-title">Download.<br>Choose. Apply.</h2><p class="section-intro">One offline installer with checkboxes and a way to restore your original files.</p><p class="requirements"><strong>Before you start</strong><br>Windows 64-bit · Ghost Recon Wildlands installed<br>9 GB of free disk space recommended<br>Administrator access · Game closed</p><a class="button" href="https://github.com/plenoryan/wildlands-hud/releases/download/v0.7.0/WildlandsHUD.zip">Get WildlandsHUD.zip <span class="arrow" aria-hidden="true">↓</span></a></div>
@@ -147,10 +307,12 @@
     <section class="section container faq-layout" id="faq" aria-labelledby="faq-title">
       <div class="faq-intro"><p class="section-kicker">03 / Field notes</p><h2 class="section-title" id="faq-title">A few things<br>to know.</h2><p>Compatibility, backups, and what this release actually changes.</p><a class="text-link" href="https://github.com/plenoryan/wildlands-hud/issues">Report an issue on GitHub <span class="arrow" aria-hidden="true">↗</span></a></div>
       <div class="faq-list">
+<details><summary>How do I update the mod or change my choices?</summary><p>Close the game, open the current installer, select the same folder, adjust the checkboxes and click Aplicar mod. The app looks for the previous installation record automatically. If requested, use “Já uso o mod: selecionar registro anterior…” to select the previous manifest.json. “Voltar à seleção padrão” resets the checkboxes only; apply to change the game.</p></details>
+<details><summary>How can I help the project and follow updates?</summary><p>Follow releases on GitHub, share this guide and report issues with the mod version and selected checkboxes. Reports of what worked in gameplay also help document each option’s limits.</p></details>
         <details open><summary>Which game versions are compatible?</summary><p>The installer checks game files against supported hashes and refuses unknown versions. A different game update or another mod may change those files. Compatibility with every edition or update is not guaranteed; check the <a href="https://github.com/plenoryan/wildlands-hud/releases/tag/v0.7.0">v0.7.0 release notes</a> for the release details.</p></details>
         <details id="restore"><summary>How do backups and restoration work?</summary><p>Original copies are saved beside the patched files with the <code>.phoenixhud.original</code> suffix. Local patch records are kept in <code>%LOCALAPPDATA%\WildlandsHUD</code>. Keep the backups: the <span lang="pt-BR">Restaurar originais</span> button uses them to restore the original files. Close the game and select the same installation folder before restoring.</p></details>
         <details><summary>Are downed allies still indicated?</summary><p>Yes. The symbol/gauge and conditional off-screen arrows remain. Hiding normal allies also hides downed ally names/distances.</p></details>
-        <details><summary>Does it remove the minimap or the whole HUD?</summary><p>Now with checkboxes. Defaults hide world markers while preserving binoculars, drone, interaction, crosshair, minimap and ammunition UI. Downed allies remain indicated. Experimental: gameplay confirmation pending.</p></details>
+        <details><summary>Does it remove the minimap or the whole HUD?</summary><p>You can hide the minimap, crosshair and weapon information independently, but they remain visible by default. Defaults hide enemies, equipment, normal allies, objectives and visual locating assistance; pings, operational drone/binocular information, interaction and downed allies remain. This is not a switch to remove every part of the game interface.</p></details>
         <details><summary>Can I use it in multiplayer?</summary><p>This project makes no claim of multiplayer safety or anti-cheat compatibility. It does not provide an anti-cheat bypass. An “offline installer” means installation does not require an online service; it is not a statement about supported game modes.</p></details>
         <details><summary>Is Wildlands HUD free and open source?</summary><p>Yes. Wildlands HUD is a free community project. Its <a href="https://github.com/plenoryan/wildlands-hud">source code</a> is available under the GNU General Public License, version 2 or later (GPL-2.0-or-later). It is not affiliated with, endorsed by, or an official product of Ubisoft.</p></details>
       </div>
