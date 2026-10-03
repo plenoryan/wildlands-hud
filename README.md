@@ -1,8 +1,10 @@
 # Wildlands HUD
 
+Four categories with full or partial selection and 14 individual options. Defaults retain pings and manual waypoints, while hiding objectives and visual locating assistance. Downed allies, interaction and operational information are retained. Hiding indicators does not disable automatic game tagging.
+
 Choose what to hide with checkboxes. **Checked = hide; unchecked = keep.** The version picker has been removed. Downed-ally indicators and interaction prompts are always preserved.
 
-[Download v0.6.0](https://github.com/plenoryan/wildlands-hud/releases/download/v0.6.0/WildlandsHUD.zip) · [Website](https://plenoryan.github.io/wildlands-hud/) · [Changelog](CHANGELOG.md)
+[Download v0.7.0](https://github.com/plenoryan/wildlands-hud/releases/download/v0.7.0/WildlandsHUD.zip) · [Website](https://plenoryan.github.io/wildlands-hud/) · [Changelog](CHANGELOG.md)
 
 ## Default selection
 
@@ -11,19 +13,25 @@ Choose what to hide with checkboxes. **Checked = hide; unchecked = keep.** The v
 | Enemies: icons, names, distances and pulses | Hide |
 | Objects: generators, alarms, mines and similar | Hide |
 | Normal allies: icons, names and distances | Hide |
-| Other markers: objectives, collectibles, pings and sync shot | Hide |
+| Pings and manual waypoints | Keep |
+| Objectives and activities | Hide |
+| Collectibles and rewards | Hide |
+| Locations and radio signals | Hide |
+| Sync shot | Hide |
+| World warnings and capture points | Hide |
+| Visual locating / identification assistance | Hide |
+| Operational binocular and drone information | Keep |
 | Minimap | Keep |
 | Crosshair | Keep |
-| Binocular and drone information | Keep |
 | Weapon and ammunition information | Keep |
 
-The objects option also covers player mines and other objects grouped by the game. Equipment types are not separate checkboxes. Binoculars and drones share elements and use one option. Other markers includes objectives and collectibles; uncheck it to retain them.
+The objects option also covers player mines and other objects grouped by the game. Equipment types are not separate checkboxes. Binoculars and drones share elements and use one option. Pings, objectives, collectibles, locations and sync shot have separate options. The parent checkbox shows partial selection when its items differ.
 
 ## Install and upgrade
 
 1. Extract the ZIP and close the game.
 2. Run `WildlandsHUD.exe` and choose your game folder. Run as administrator if write permission is required.
-3. Review the checkboxes and click **Aplicar mod** (Apply). **Voltar à seleção padrão** resets the choices only; Apply writes them.
+3. Open the category tabs, choose whole groups or individual items, then click **Aplicar mod** (Apply). **Voltar à seleção padrão** resets the choices only; Apply writes them.
 4. To upgrade V3/V4/V5 or change choices, apply again. The installer uses verified original backups and records options in the manifest. Select the previous manifest under **Já uso o mod** if prompted.
 
 **Restaurar originais** restores the original interface. Keep `.phoenixhud.original` files beside the game and installation records in `%LOCALAPPDATA%\WildlandsHUD`. Unknown game versions or externally changed files are refused.
@@ -31,7 +39,7 @@ The objects option also covers player mines and other objects grouped by the gam
 ## Validation and limitations
 
 - Windows 64-bit, your own game installation and about 9 GB free space. The executable includes Python.
-- Defaults retain binocular, drone, crosshair, minimap, ammunition and interaction UI. When normal allies are hidden, downed ally names/distances are hidden too; the symbol/gauge and conditional off-screen arrows remain.
+- Defaults retain operational binocular/drone, crosshair, minimap, ammunition and interaction UI, while hiding scanning/locating indicators. When normal allies are hidden, downed ally names/distances are hidden too; the symbol/gauge and conditional off-screen arrows remain.
 - The configurable edition is experimental and still needs gameplay confirmation. Binary tests do not prove every visual game state.
 - Hidden images use an existing transparent game resource. Configurable mode modifies no shared textures.
 - No game files, extracted assets, textures or saves are included. Each player uses their own installation.

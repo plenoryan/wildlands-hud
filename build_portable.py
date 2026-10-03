@@ -21,10 +21,13 @@ README = """Wildlands HUD — aplicativo para uso local
 3. Clique com o botão direito em WildlandsHUD.exe e use Executar como administrador.
    Na edição em Python, use Abrir_WildlandsHUD.cmd.
 4. Escolha a pasta da sua própria instalação do jogo.
-5. Marque o que deseja ocultar. Desmarcado significa manter.
+5. Nas abas, marque categorias inteiras ou itens individuais para ocultar.
+   Desmarcado = manter; uma categoria parcialmente marcada mistura as escolhas.
 6. Clique em Aplicar mod e aguarde a conferência terminar.
 
-O padrão oculta inimigos, objetos, aliados normais e outros marcadores no cenário.
+O padrão oculta inimigos, objetos, aliados normais, objetivos e a ajuda visual
+de localização. Pings e pontos manuais permanecem visíveis.
+Ocultar os indicadores não desativa a marcação automática do jogo.
 Mira, minimapa, binóculo/drone e munição ficam desmarcados e são preservados.
 Aliado caído e avisos de interação são sempre preservados. A categoria Objetos
 inclui equipamentos inimigos, minas próprias e outros objetos agrupados pelo jogo.

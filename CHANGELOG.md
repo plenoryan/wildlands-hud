@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.7.0 — 2026-10-03 — Categories and individual choices (experimental)
+
+- Four category tabs and 14 individual options; each parent checkbox supports all/none and displays partial selection.
+- Pings/manual waypoints now remain visible by default. Objectives, collectibles, locations, sync shot and world warnings are independently selectable and default to hidden.
+- Visual locating/scanning assistance defaults to hidden, independently of operational binocular/drone information. Does not disable automatic game tagging. Shared parent instances cannot override an unchecked category.
+- Interaction and downed-ally indicators remain protected. Gameplay validation of the new selection remains pending.
+
 ## v0.6.0 — 2026-10-03 — Configurable HUD (experimental)
 
 - Replaces the version picker with eight checkboxes. Checked hides a group; unchecked retains it. Defaults hide enemies, objects, normal allies and other world markers. Operational HUD is retained.

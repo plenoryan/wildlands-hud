@@ -14,10 +14,15 @@ FIXTURES=Path(os.environ.get('WILDLANDS_V5_FIXTURES','analysis_v5'))
 class ChoiceTests(unittest.TestCase):
     def test_default_preserves_operational_hud_and_downed(self):
         targets=options.selected_targets()
-        self.assertEqual({options.category(t) for t in targets},{'enemies','allies','objects','world'})
+        self.assertEqual({options.category(t) for t in targets},{key for key,value in options.DEFAULTS.items() if value})
+        self.assertFalse(options.DEFAULTS['pings'])
+        self.assertTrue(options.DEFAULTS['scanning'])
+        self.assertFalse(options.DEFAULTS['optics'])
         for t in targets:
-            self.assertTrue(t.name.startswith('HUD_Marker_') or t in options.ENEMIES)
+            self.assertTrue(t.name.startswith('HUD_Marker_') or t in options.ENEMIES or options.category(t)=='scanning')
             self.assertNotIn('FriendlyGauge',t.name)
+            self.assertNotIn('HUD_Marker_Ping_',t.name)
+            self.assertNotIn('HUD_Marker_Beacon_',t.name)
         self.assertEqual(options.selected_targets(dict.fromkeys(options.DEFAULTS,False)),())
 
     def test_all_combinations_are_independent_and_never_modify_textures(self):
@@ -34,6 +39,11 @@ class ChoiceTests(unittest.TestCase):
     def test_invalid_options_rejected(self):
         for invalid in ({}, {'enemies':True},dict(options.DEFAULTS,enemies=1),dict(options.DEFAULTS,unknown=True)):
             with self.assertRaises(ValueError):options.selected_targets(invalid)
+
+    def test_categories_cover_each_checkbox_exactly_once(self):
+        keys=[key for _,_,children in options.GROUPS for key in children]
+        self.assertEqual(len(keys),len(set(keys)))
+        self.assertEqual(set(keys),set(options.DEFAULTS))
 
 @unittest.skipUnless(FIXTURES.is_dir(),'Private game fixtures are not distributed')
 class RealChoices(unittest.TestCase):
@@ -63,10 +73,22 @@ class RealChoices(unittest.TestCase):
         by_guid={UUID(t.name[-36:]).bytes_le:options.category(t) for t in options.ALL_TARGETS}
         for t in options.ALL_TARGETS:
             body=(FIXTURES/t.archive/(t.name+'.bin')).read_bytes()
+            patched=options.patch_selected(body,t)
             for node in records(body):
                 if node['type']!='3313560f':continue
                 child=by_guid.get(body[node['fields_offset']+103:node['fields_offset']+119])
                 if child and child!=options.category(t):
-                    self.assertNotIn(node['guid'],getattr(t,'hide_guids',()),(t.name,node['name'],child))
+                    pos=node['scale_offset']
+                    self.assertEqual(patched[pos:pos+8],body[pos:pos+8],(t.name,node['name'],child))
+
+    def test_operational_optics_never_suppresses_unselected_scanning(self):
+        for t in options.ALL_TARGETS:
+            if options.category(t)!='optics':continue
+            body=(FIXTURES/t.archive/(t.name+'.bin')).read_bytes()
+            patched=options.patch_selected(body,t)
+            for node in records(body):
+                if node['type']=='3313560f':
+                    at=node['scale_offset']
+                    self.assertEqual(body[at:at+8],patched[at:at+8])
 
 if __name__=='__main__':unittest.main()

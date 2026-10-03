@@ -15,10 +15,10 @@ import shutil
 import sys
 import threading
 import uuid
-from phoenix_options import OPTIONS, DEFAULTS, normalize_options
+from phoenix_options import OPTIONS, DEFAULTS, GROUPS, normalize_options
 
 APP_NAME = "Wildlands HUD"
-APP_VERSION = "0.6.0"
+APP_VERSION = "0.7.0"
 ARCHIVES = ("DataPC_extra.forge", "DataPC_extra_patch_01.forge")
 VARIANTS = {
     "v5": "V5 — manter aliado caído e interação; ocultar restante (experimental)",
@@ -197,19 +197,42 @@ class _QueueWriter(io.TextIOBase):
             self.buffer = ""
 
 
-def options_panel(parent):
+def options_panel(parent, groups_out=None):
     import tkinter as tk
     from tkinter import ttk
     frame = ttk.LabelFrame(parent, text='Marque o que deseja ocultar · Desmarcado = manter', padding=10)
     frame.pack(fill='x', pady=(0, 10))
-    variables, controls = {}, []
-    for index, (key, label, default) in enumerate(OPTIONS):
-        variable = tk.BooleanVar(master=parent, value=default)
-        control = ttk.Checkbutton(frame, text=label, variable=variable)
-        control.grid(row=index // 2, column=index % 2, sticky='w', padx=(0, 10), pady=3)
-        variables[key] = variable
-        controls.append(control)
-    return variables, controls
+    tabs=ttk.Notebook(frame)
+    tabs.pack(fill='x')
+    labels={key:label for key,label,_ in OPTIONS}
+    variables={key:tk.BooleanVar(master=parent,value=default) for key,_,default in OPTIONS}
+    controls, parents=[],[]
+    for group_key,title,keys in GROUPS:
+        page=ttk.Frame(tabs,padding=8)
+        tabs.add(page,text=title)
+        group_value=tk.IntVar(master=parent)
+        count=tk.StringVar(master=parent)
+        def toggle(keys=keys,value=group_value):
+            selected=value.get()==1
+            for key in keys: variables[key].set(selected)
+        group_button=ttk.Checkbutton(page,text='Ocultar toda a categoria',variable=group_value,
+                                    onvalue=1,offvalue=0,command=toggle)
+        group_button.pack(anchor='w')
+        ttk.Label(page,textvariable=count).pack(anchor='w',padx=22,pady=(0,4))
+        for key in keys:
+            control=ttk.Checkbutton(page,text=labels[key],variable=variables[key])
+            control.pack(anchor='w',padx=22,pady=2)
+            controls.append(control)
+        def update_group(*_,keys=keys,value=group_value,button=group_button,count=count):
+            total=sum(variables[key].get() for key in keys)
+            value.set(1 if total==len(keys) else 0 if total==0 else -1)
+            button.state(['alternate'] if 0<total<len(keys) else ['!alternate'])
+            count.set(f'{total} de {len(keys)} itens ocultos' + (' · seleção parcial' if 0<total<len(keys) else ''))
+        for key in keys: variables[key].trace_add('write',update_group)
+        update_group()
+        parents.append(group_button)
+        if groups_out is not None: groups_out[group_key]=(group_button,group_value)
+    return variables, controls+parents
 
 
 def launch_gui():
@@ -218,7 +241,7 @@ def launch_gui():
 
     root = tk.Tk()
     root.title(APP_NAME + " " + APP_VERSION)
-    root.geometry("900x700")
+    root.geometry("900x760")
     root.minsize(860, 660)
     panel = ttk.Frame(root, padding=20)
     panel.pack(fill="both", expand=True)
@@ -236,7 +259,8 @@ def launch_gui():
     browse.pack(side="left", padx=(8, 0))
     choices, checkboxes = options_panel(panel)
     ttk.Label(panel, text='Aliado caído e avisos de interação são sempre preservados.\n'
-              'Objetos inclui equipamentos inimigos, minas próprias e outros objetos agrupados pelo jogo.',
+              'Padrão: pings visíveis; objetivos e ajuda visual de localização ocultos.\n'
+              'Objetos inclui minas próprias. Ocultar a ajuda visual não desativa a marcação automática.',
               wraplength=840).pack(anchor='w', pady=(0, 8))
     defaults_button = ttk.Button(panel, text='Voltar à seleção padrão',
                                  command=lambda: [choices[k].set(v) for k,v in DEFAULTS.items()])
@@ -360,12 +384,22 @@ def self_check(output):
         raise RuntimeError("Componentes da V5 incompletos.")
     window = tk.Tk()
     window.withdraw()
-    variables, controls = options_panel(window)
+    groups={}
+    variables, controls = options_panel(window,groups)
     if {key: var.get() for key,var in variables.items()} != DEFAULTS:
         raise RuntimeError('Opções padrão incorretas.')
     controls[0].invoke()
     if variables['enemies'].get() == DEFAULTS['enemies']:
         raise RuntimeError('Caixa de seleção não responde.')
+    navigation, group_value=groups['navigation']
+    if group_value.get()!=-1 or 'alternate' not in navigation.state():
+        raise RuntimeError('Categoria parcialmente marcada não indicada.')
+    navigation.invoke()
+    if not all(variables[key].get() for key in dict((g,k) for g,_,k in GROUPS)['navigation']):
+        raise RuntimeError('Seleção da categoria não propagou aos itens.')
+    variables['pings'].set(False)
+    if group_value.get()!=-1:
+        raise RuntimeError('Seleção individual não atualizou a categoria.')
     window.update_idletasks()
     window.destroy()
     Path(output).write_text(json.dumps({"ok": True, "app_version": APP_VERSION,
@@ -373,7 +407,8 @@ def self_check(output):
                                        "lzo_roundtrip": True, "tkinter": True,
                                        "v4_downed_offscreen_condition": True,
                                        "v5_full_hud_targets": len(HUD_TARGETS),
-                                       "custom_checkboxes": len(controls)}), encoding="utf8")
+                                       "custom_checkboxes": len(variables),
+                                       "category_checkboxes": len(groups)}), encoding="utf8")
 
 
 if __name__ == "__main__":
