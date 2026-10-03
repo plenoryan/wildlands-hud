@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.5.1 — 2026-10-02 — Interaction prompt fix
+
+- Fixes the reported V5 regression that hid action prompts such as “press X”.
+- Retains contextual interactions and control hints, plus their ancestor instances across base/patch archives. Other inspected HUD visuals remain suppressed, including generator markers; V4 downed-ally behaviour is unchanged.
+- 516 additional HUD targets (545 total). Regression coverage checks that interaction and downed-ally display chains cannot be scaled away.
+- Upgrade uses verified original backups, including when the active mode is already V5. Gameplay confirmation of this fix is pending.
+
 ## v0.5.0 — 2026-10-02 — Experimental prerelease
 
 - New default V5 suppresses inspected HUD visuals, including object markers (generators, alarms, turrets, SAMs and jammers), names/distances, crosshair, minimap, ammunition and notifications.

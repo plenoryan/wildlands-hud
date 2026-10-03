@@ -1,10 +1,12 @@
 # Wildlands HUD
 
-**Experimental V5 — hide the HUD except downed allies.** The new default suppresses inspected HUD resources, including generators and other objects, names/distances, crosshair, minimap, ammunition and notifications. V4’s downed-ally logic is preserved. Not yet gameplay-tested: check downed allies on/off screen and after revival. Runtime-generated elements may need further work. V3 and V4 remain available.
+**0.5.1 fix:** keeps interaction prompts and action buttons (such as “press X”), as well as downed allies. Other inspected HUD visuals remain hidden. Select V5 and **Aplicar mod** again to upgrade from the original backups. Gameplay confirmation is still pending.
+
+**Experimental V5 — hide the HUD except downed allies and interaction prompts.** The new default suppresses inspected HUD resources, including generators and other objects, names/distances, crosshair, minimap, ammunition and notifications. V4’s downed-ally logic is preserved. Not yet gameplay-tested: check downed allies on/off screen and after revival. Runtime-generated elements may need further work. V3 and V4 remain available.
 
 **A local HUD mod installer for Tom Clancy’s Ghost Recon Wildlands on Windows.** Hide enemy markers, or try hiding normal ally markers while retaining the downed-ally indicator.
 
-[Português (Brasil)](README.pt-BR.md) · [Project website](https://plenoryan.github.io/wildlands-hud/) · [Download v0.5.0](https://github.com/plenoryan/wildlands-hud/releases/download/v0.5.0/WildlandsHUD.zip) · [Release notes](CHANGELOG.md)
+[Português (Brasil)](README.pt-BR.md) · [Project website](https://plenoryan.github.io/wildlands-hud/) · [Download v0.5.1](https://github.com/plenoryan/wildlands-hud/releases/download/v0.5.1/WildlandsHUD.zip) · [Release notes](CHANGELOG.md)
 
 **V3 and V4 have been confirmed working in reported gameplay tests by the creator.** v0.4.0 remains the first public prerelease; these reports do not establish compatibility with every installation, game version or game state.
 
@@ -22,7 +24,7 @@ V4 also hides ally names and distances while they are downed. Preservation refer
 
 You need **Windows 64-bit**, your own installation of Ghost Recon Wildlands, and roughly **9 GB of free space** for the first preparation. The downloadable executable includes its Python runtime; you do not need to install Python.
 
-1. [Download WildlandsHUD.zip](https://github.com/plenoryan/wildlands-hud/releases/download/v0.5.0/WildlandsHUD.zip) and extract it completely.
+1. [Download WildlandsHUD.zip](https://github.com/plenoryan/wildlands-hud/releases/download/v0.5.1/WildlandsHUD.zip) and extract it completely.
 2. Close Ghost Recon Wildlands.
 3. Right-click `WildlandsHUD.exe` and choose **Run as administrator**.
 4. Select your game’s installation folder.

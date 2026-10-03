@@ -17,10 +17,10 @@ import threading
 import uuid
 
 APP_NAME = "Wildlands HUD"
-APP_VERSION = "0.5.0"
+APP_VERSION = "0.5.1"
 ARCHIVES = ("DataPC_extra.forge", "DataPC_extra_patch_01.forge")
 VARIANTS = {
-    "v5": "V5 — ocultar todo o HUD; manter aliado caído (experimental)",
+    "v5": "V5 — manter aliado caído e interação; ocultar restante (experimental)",
     "v4": "V4 — ocultar inimigos e aliados normais; manter caídos (confirmado)",
     "v3": "V3 — ocultar somente inimigos (confirmado)",
 }
@@ -333,7 +333,7 @@ def self_check(output):
         raise RuntimeError("Falha na verificação da biblioteca de compressão.")
     if not callable(hud.prepare_v4) or len(FRIENDLY_TARGETS) != 4 or len(OOS_EDITS) != 2:
         raise RuntimeError("Componentes da V4 incompletos.")
-    if not callable(hud.prepare_v5) or len(HUD_TARGETS) != 529:
+    if not callable(hud.prepare_v5) or len(HUD_TARGETS) != 516:
         raise RuntimeError("Componentes da V5 incompletos.")
     window = tk.Tk()
     window.withdraw()

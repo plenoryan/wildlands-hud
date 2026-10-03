@@ -5,6 +5,8 @@ Only explicitly inventoried HUD resources are accepted. No global image, font,
 menu, binding, animation or widget identity is erased. Image references use V3's
 transparent provider; text and non-protected child instances get zero XY scale.
 Native/runtime-generated visuals still require an in-game acceptance test.
+V5.1 also retains contextual interaction prompts and control hints, including
+their ancestor instances, so action text and keyboard/controller icons remain.
 """
 from __future__ import annotations
 from dataclasses import dataclass

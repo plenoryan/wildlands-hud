@@ -21,12 +21,13 @@ README = """Wildlands HUD — aplicativo para uso local
 3. Clique com o botão direito em WildlandsHUD.exe e use Executar como administrador.
    Na edição em Python, use Abrir_WildlandsHUD.cmd.
 4. Escolha a pasta da sua própria instalação do jogo.
-5. Escolha V5 (todo o HUD oculto, exceto aliado caído), V4 (marcadores) ou V3 (inimigos).
+5. Escolha V5 (HUD oculto, exceto aliado caído e interação), V4 (marcadores) ou V3 (inimigos).
 6. Clique em Aplicar mod e aguarde a conferência terminar.
 
 A V3 e a V4 foram confirmadas pelo usuário em jogo. A V5 é experimental e ainda
 precisa de teste em partida: confira um aliado caído dentro e fora da tela.
 A V5 também oculta mira, minimapa, munição, avisos, nomes e distâncias.
+Na v0.5.1, os avisos de interação e botões de ação (como aperte X) são preservados.
 A V4 oculta nomes/distâncias de aliados e preserva o símbolo de reanimação.
 A seta fora da tela foi condicionada ao estado de caído; teste-a também.
 

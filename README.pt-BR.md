@@ -1,10 +1,12 @@
 # Wildlands HUD
 
-**V5 experimental — HUD oculto, exceto aliado caído.** Novo modo padrão: oculta os recursos de HUD inspecionados, incluindo geradores e outros objetos, nomes/distâncias, mira, minimapa, munição e avisos. Preserva a lógica de caído da V4. Ainda não foi testado em partida; confira o caído dentro/fora da tela e após reanimação. Elementos gerados pelo jogo podem exigir ajustes. V3 e V4 continuam disponíveis.
+**Correção 0.5.1:** mantém os avisos de interação e os botões de ação (como “aperte X”), além do aliado caído. O restante do HUD inspecionado continua oculto. Atualize usando o mesmo modo V5 e clique em **Aplicar mod**; o instalador reaplica a correção a partir dos originais. Confirmação em partida ainda pendente.
+
+**V5 experimental — HUD oculto, exceto aliado caído e interação.** Novo modo padrão: oculta os recursos de HUD inspecionados, incluindo geradores e outros objetos, nomes/distâncias, mira, minimapa, munição e avisos. Preserva a lógica de caído da V4. Ainda não foi testado em partida; confira o caído dentro/fora da tela e após reanimação. Elementos gerados pelo jogo podem exigir ajustes. V3 e V4 continuam disponíveis.
 
 **Instalador local de mod de HUD para Tom Clancy’s Ghost Recon Wildlands no Windows.** Oculte marcadores de inimigos ou experimente ocultar os marcadores normais de aliados, mantendo a indicação de aliado caído.
 
-[English](README.md) · [Site do projeto](https://plenoryan.github.io/wildlands-hud/) · [Baixar v0.5.0](https://github.com/plenoryan/wildlands-hud/releases/download/v0.5.0/WildlandsHUD.zip) · [Notas da versão](CHANGELOG.md)
+[English](README.md) · [Site do projeto](https://plenoryan.github.io/wildlands-hud/) · [Baixar v0.5.1](https://github.com/plenoryan/wildlands-hud/releases/download/v0.5.1/WildlandsHUD.zip) · [Notas da versão](CHANGELOG.md)
 
 **V3 e V4 tiveram funcionamento confirmado em testes em partida relatados pelo criador.** A v0.4.0 continua sendo a primeira prévia pública; esses relatos não comprovam compatibilidade com todas as instalações, versões ou situações do jogo.
 
@@ -22,7 +24,7 @@ A V4 também oculta nomes e distâncias de aliados enquanto estão caídos. O qu
 
 É necessário **Windows de 64 bits**, uma instalação própria de Ghost Recon Wildlands e aproximadamente **9 GB livres** no primeiro preparo. O executável para download já inclui o runtime Python; você não precisa instalar Python.
 
-1. [Baixe WildlandsHUD.zip](https://github.com/plenoryan/wildlands-hud/releases/download/v0.5.0/WildlandsHUD.zip) e extraia todo o conteúdo.
+1. [Baixe WildlandsHUD.zip](https://github.com/plenoryan/wildlands-hud/releases/download/v0.5.1/WildlandsHUD.zip) e extraia todo o conteúdo.
 2. Feche Ghost Recon Wildlands.
 3. Clique com o botão direito em `WildlandsHUD.exe` e escolha **Executar como administrador**.
 4. Selecione a pasta de instalação do jogo.

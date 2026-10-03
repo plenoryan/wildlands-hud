@@ -17,10 +17,11 @@ class InventoryTests(unittest.TestCase):
     def test_only_explicit_hud_targets_no_menu_or_gauge(self):
         identities = [(t.archive, t.name) for t in v5.TARGETS]
         self.assertEqual(len(identities), len(set(identities)))
-        self.assertEqual(len(v5.HUD_TARGETS), 529)
+        self.assertEqual(len(v5.HUD_TARGETS), 516)
         for t in v5.HUD_TARGETS:
             self.assertTrue(t.name.startswith(('HUD_', 'CrossHair_')) or '_HUD_' in t.name)
             self.assertNotIn('HUD_Marker_Friendly', t.name)
+            self.assertFalse(t.name.startswith(('HUD_ContextualInteraction_', 'HUD_ControlHelper_')))
             self.assertEqual(len(t.sha256), 64)
             self.assertTrue(t.hide_guids)
 
@@ -80,6 +81,7 @@ class RealResourceTests(unittest.TestCase):
                 continue
             resources.append((path,guid,path.read_bytes()))
         protected={GAUGE_GUID.bytes_le}
+        protected.update(guid for path,guid,_ in resources if path.stem.startswith(('HUD_ContextualInteraction_', 'HUD_ControlHelper_')))
         while True:
             parents={guid for _,guid,body in resources if any(n['type']=='3313560f' and body[n['fields_offset']+103:n['fields_offset']+119] in protected for n in records(body))}
             if parents <= protected:break
