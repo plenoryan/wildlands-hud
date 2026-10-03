@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.5.0 — 2026-10-02 — Experimental prerelease
+
+- New default V5 suppresses inspected HUD visuals, including object markers (generators, alarms, turrets, SAMs and jammers), names/distances, crosshair, minimap, ammunition and notifications.
+- Keeps V4 downed-ally gauge and conditional off-screen arrows; no ally names/distances. V3/V4 remain selectable.
+- Adds 529 hash-locked HUD resources to the existing 29 V4 changes. Preserves shared image/font assets and the full dependency chain leading to the downed gauge.
+- Includes the bilingual disclaimer in the downloadable ZIP.
+- Experimental: no V5 gameplay confirmation yet. Automated checks do not establish visual completeness or every game state.
+
 ## Documentation update — 2026-09-30
 
 - Recorded the creator’s successful V4 gameplay test.

@@ -1,8 +1,10 @@
 # Wildlands HUD
 
+**Experimental V5 — hide the HUD except downed allies.** The new default suppresses inspected HUD resources, including generators and other objects, names/distances, crosshair, minimap, ammunition and notifications. V4’s downed-ally logic is preserved. Not yet gameplay-tested: check downed allies on/off screen and after revival. Runtime-generated elements may need further work. V3 and V4 remain available.
+
 **A local HUD mod installer for Tom Clancy’s Ghost Recon Wildlands on Windows.** Hide enemy markers, or try hiding normal ally markers while retaining the downed-ally indicator.
 
-[Português (Brasil)](README.pt-BR.md) · [Project website](https://plenoryan.github.io/wildlands-hud/) · [Download v0.4.0](https://github.com/plenoryan/wildlands-hud/releases/download/v0.4.0/WildlandsHUD.zip) · [Release notes](CHANGELOG.md)
+[Português (Brasil)](README.pt-BR.md) · [Project website](https://plenoryan.github.io/wildlands-hud/) · [Download v0.5.0](https://github.com/plenoryan/wildlands-hud/releases/download/v0.5.0/WildlandsHUD.zip) · [Release notes](CHANGELOG.md)
 
 **V3 and V4 have been confirmed working in reported gameplay tests by the creator.** v0.4.0 remains the first public prerelease; these reports do not establish compatibility with every installation, game version or game state.
 
@@ -10,20 +12,21 @@
 
 | Mode | Behavior | Validation |
 | --- | --- | --- |
+| **V5 — hidden HUD** | Suppresses inspected HUD resources and retains V4’s downed-ally indicator. | Experimental; gameplay test pending. |
 | **V3 — enemies only** | Hides the targeted enemy icons, distance labels, circles and pulses. | Confirmed in a reported gameplay test. |
 | **V4 — enemies and normal allies** | Includes V3 and hides normal ally markers, names and distances. Preserves the downed-ally gauge/symbol and makes the two off-screen arrows conditional on the ally being downed and off-screen. | Resource checks, automated tests and a reported gameplay confirmation by the creator. |
 
-V4 also hides ally names and distances while they are downed. Preservation refers to the downed-ally gauge/symbol and conditional off-screen arrows, not those text labels. The tool targets inspected HUD resources; it does not claim to remove every marker category. Sync Shot markers are outside its target list.
+V4 also hides ally names and distances while they are downed. Preservation refers to the downed-ally gauge/symbol and conditional off-screen arrows, not those text labels. The tool targets inspected HUD resources; it does not claim to remove every marker category. V3/V4 exclude Sync Shot markers; V5 also targets that HUD.
 
 ## Install
 
 You need **Windows 64-bit**, your own installation of Ghost Recon Wildlands, and roughly **9 GB of free space** for the first preparation. The downloadable executable includes its Python runtime; you do not need to install Python.
 
-1. [Download WildlandsHUD.zip](https://github.com/plenoryan/wildlands-hud/releases/download/v0.4.0/WildlandsHUD.zip) and extract it completely.
+1. [Download WildlandsHUD.zip](https://github.com/plenoryan/wildlands-hud/releases/download/v0.5.0/WildlandsHUD.zip) and extract it completely.
 2. Close Ghost Recon Wildlands.
 3. Right-click `WildlandsHUD.exe` and choose **Run as administrator**.
 4. Select your game’s installation folder.
-5. Choose **V3** or **V4**, then click **Aplicar mod** (Apply mod). The current app interface is in Portuguese.
+5. Choose **V5**, **V4** or **V3**, then click **Aplicar mod** (Apply mod). The current app interface is in Portuguese.
 6. Wait for preparation, verification and installation to finish before starting the game.
 
 For V4, check a normal ally, a downed ally on-screen, a downed ally off-screen and the state after revival. Report the result through [Issues](https://github.com/plenoryan/wildlands-hud/issues).

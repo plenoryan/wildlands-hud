@@ -1,8 +1,10 @@
 # Wildlands HUD
 
+**V5 experimental — HUD oculto, exceto aliado caído.** Novo modo padrão: oculta os recursos de HUD inspecionados, incluindo geradores e outros objetos, nomes/distâncias, mira, minimapa, munição e avisos. Preserva a lógica de caído da V4. Ainda não foi testado em partida; confira o caído dentro/fora da tela e após reanimação. Elementos gerados pelo jogo podem exigir ajustes. V3 e V4 continuam disponíveis.
+
 **Instalador local de mod de HUD para Tom Clancy’s Ghost Recon Wildlands no Windows.** Oculte marcadores de inimigos ou experimente ocultar os marcadores normais de aliados, mantendo a indicação de aliado caído.
 
-[English](README.md) · [Site do projeto](https://plenoryan.github.io/wildlands-hud/) · [Baixar v0.4.0](https://github.com/plenoryan/wildlands-hud/releases/download/v0.4.0/WildlandsHUD.zip) · [Notas da versão](CHANGELOG.md)
+[English](README.md) · [Site do projeto](https://plenoryan.github.io/wildlands-hud/) · [Baixar v0.5.0](https://github.com/plenoryan/wildlands-hud/releases/download/v0.5.0/WildlandsHUD.zip) · [Notas da versão](CHANGELOG.md)
 
 **V3 e V4 tiveram funcionamento confirmado em testes em partida relatados pelo criador.** A v0.4.0 continua sendo a primeira prévia pública; esses relatos não comprovam compatibilidade com todas as instalações, versões ou situações do jogo.
 
@@ -10,20 +12,21 @@
 
 | Opção | Comportamento | Validação |
 | --- | --- | --- |
+| **V5 — HUD oculto** | Oculta o HUD inspecionado e mantém o indicador de aliado caído da V4. | Experimental; teste em partida pendente. |
 | **V3 — somente inimigos** | Oculta os ícones, distâncias, círculos e pulsos dos inimigos nos alvos inspecionados. | Confirmada em um teste relatado dentro do jogo. |
 | **V4 — inimigos e aliados normais** | Inclui a V3 e oculta marcadores normais, nomes e distâncias de aliados. Preserva o gauge/símbolo de aliado caído e condiciona as duas setas fora da tela ao aliado estar caído e fora da tela. | Recursos conferidos, testes automatizados e funcionamento confirmado em teste em partida relatado pelo criador. |
 
-A V4 também oculta nomes e distâncias de aliados enquanto estão caídos. O que permanece é o gauge/símbolo de caído e as setas condicionais fora da tela, não esses textos. O mod atua nos recursos de HUD inspecionados; não promete remover todas as categorias de marcador. Os marcadores de tiro sincronizado (Sync Shot) estão fora da lista de alvos.
+A V4 também oculta nomes e distâncias de aliados enquanto estão caídos. O que permanece é o gauge/símbolo de caído e as setas condicionais fora da tela, não esses textos. O mod atua nos recursos de HUD inspecionados; não promete remover todas as categorias de marcador. Na V3/V4, tiro sincronizado (Sync Shot) fica fora dos alvos; a V5 também inclui esse HUD.
 
 ## Instalação
 
 É necessário **Windows de 64 bits**, uma instalação própria de Ghost Recon Wildlands e aproximadamente **9 GB livres** no primeiro preparo. O executável para download já inclui o runtime Python; você não precisa instalar Python.
 
-1. [Baixe WildlandsHUD.zip](https://github.com/plenoryan/wildlands-hud/releases/download/v0.4.0/WildlandsHUD.zip) e extraia todo o conteúdo.
+1. [Baixe WildlandsHUD.zip](https://github.com/plenoryan/wildlands-hud/releases/download/v0.5.0/WildlandsHUD.zip) e extraia todo o conteúdo.
 2. Feche Ghost Recon Wildlands.
 3. Clique com o botão direito em `WildlandsHUD.exe` e escolha **Executar como administrador**.
 4. Selecione a pasta de instalação do jogo.
-5. Escolha **V3** ou **V4** e clique em **Aplicar mod**.
+5. Escolha **V5**, **V4** ou **V3** e clique em **Aplicar mod**.
 6. Aguarde o preparo, a conferência e a instalação terminarem antes de abrir o jogo.
 
 Na V4, confira um aliado normal, um aliado caído dentro da tela, um aliado caído fora da tela e o estado após a reanimação. Relate o resultado em [Issues](https://github.com/plenoryan/wildlands-hud/issues).

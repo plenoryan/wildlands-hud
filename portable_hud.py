@@ -17,10 +17,11 @@ import threading
 import uuid
 
 APP_NAME = "Wildlands HUD"
-APP_VERSION = "0.4.0"
+APP_VERSION = "0.5.0"
 ARCHIVES = ("DataPC_extra.forge", "DataPC_extra_patch_01.forge")
 VARIANTS = {
-    "v4": "V4 — ocultar inimigos e aliados normais; manter caídos (experimental)",
+    "v5": "V5 — ocultar todo o HUD; manter aliado caído (experimental)",
+    "v4": "V4 — ocultar inimigos e aliados normais; manter caídos (confirmado)",
     "v3": "V3 — ocultar somente inimigos (confirmado)",
 }
 
@@ -112,7 +113,7 @@ def _check_space(game, cache):
         raise OSError("Espaço insuficiente no disco do jogo para instalar as cópias verificadas.")
 
 
-def run_operation(action, game, *, cache=None, previous=None, variant="v4", emit=print):
+def run_operation(action, game, *, cache=None, previous=None, variant="v5", emit=print):
     """Perform one explicitly requested operation through the existing safe backend.
 
     Dependency import is lazy, so opening the UI/building a source distribution
@@ -146,7 +147,7 @@ def run_operation(action, game, *, cache=None, previous=None, variant="v4", emit
     prepare = getattr(hud, "prepare_" + variant, None)
     if prepare is None:
         # Never silently apply V3 when the user selected the extra ally behavior.
-        raise RuntimeError("Esta distribuição ainda não inclui a V4. Use uma distribuição atualizada ou selecione explicitamente a V3.")
+        raise RuntimeError(f"Esta distribuição não inclui a {variant.upper()}. Use uma distribuição atualizada.")
     if has_originals and previous_package is None:
         raise ValueError("Há um backup de instalação anterior. Selecione o manifesto dela para preservar os originais e atualizar com segurança.")
     if any((game / (name + ".phoenixhud.pending")).exists() for name in ARCHIVES):
@@ -324,6 +325,7 @@ def self_check(output):
     import tkinter as tk
     from forge_io import LzoCodec
     from phoenix_friendly_patch import FRIENDLY_TARGETS, OOS_EDITS
+    from phoenix_full_hud_patch import HUD_TARGETS
     hud = importlib.import_module("phoenix_hud")
     codec = LzoCodec()
     sample = bytes(range(256)) * 16
@@ -331,6 +333,8 @@ def self_check(output):
         raise RuntimeError("Falha na verificação da biblioteca de compressão.")
     if not callable(hud.prepare_v4) or len(FRIENDLY_TARGETS) != 4 or len(OOS_EDITS) != 2:
         raise RuntimeError("Componentes da V4 incompletos.")
+    if not callable(hud.prepare_v5) or len(HUD_TARGETS) != 529:
+        raise RuntimeError("Componentes da V5 incompletos.")
     window = tk.Tk()
     window.withdraw()
     window.update_idletasks()
@@ -338,7 +342,8 @@ def self_check(output):
     Path(output).write_text(json.dumps({"ok": True, "app_version": APP_VERSION,
                                        "frozen": bool(getattr(sys, "frozen", False)),
                                        "lzo_roundtrip": True, "tkinter": True,
-                                       "v4_downed_offscreen_condition": True}), encoding="utf8")
+                                       "v4_downed_offscreen_condition": True,
+                                       "v5_full_hud_targets": len(HUD_TARGETS)}), encoding="utf8")
 
 
 if __name__ == "__main__":

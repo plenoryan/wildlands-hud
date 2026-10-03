@@ -49,6 +49,7 @@ class PortableControllerTests(unittest.TestCase):
             ("require_game_closed", "load_manifest", "sha256", "install", "restore", "upgrade", "BACKUP_SUFFIX")})
         self.hud.prepare_v3 = prepare("v3")
         self.hud.prepare_v4 = prepare("v4")
+        self.hud.prepare_v5 = prepare("v5")
         mock.patch.object(app.importlib, "import_module", return_value=self.hud).start()
 
     def run_app(self, action, **options):
@@ -56,12 +57,12 @@ class PortableControllerTests(unittest.TestCase):
 
     def test_local_prepare_install_and_restore_roundtrip(self):
         result = self.run_app("install")
-        self.assertEqual(result["variant"], "v4")
+        self.assertEqual(result["variant"], "v5")
         self.assertIsNone(self.prepares[0][3])
         self.assertTrue((self.cache / "active.json").is_file())
         for name in app.ARCHIVES:
             self.assertEqual((self.game / (name + backend.BACKUP_SUFFIX)).read_bytes(), self.originals[name])
-            self.assertTrue((self.game / name).read_bytes().startswith(b"v4 patched"))
+            self.assertTrue((self.game / name).read_bytes().startswith(b"v5 patched"))
         self.run_app("restore")
         for name in app.ARCHIVES:
             self.assertEqual((self.game / name).read_bytes(), self.originals[name])
@@ -75,10 +76,27 @@ class PortableControllerTests(unittest.TestCase):
             self.assertEqual((self.game / (name + backend.BACKUP_SUFFIX)).read_bytes(), self.originals[name])
             self.assertTrue((self.game / name).read_bytes().startswith(b"v4 patched"))
 
+    def test_v4_to_v5_and_back_preserves_originals(self):
+        self.run_app("install", variant="v4")
+        self.run_app("install", variant="v5")
+        for name in app.ARCHIVES:
+            self.assertTrue((self.game / name).read_bytes().startswith(b"v5 patched"))
+            self.assertEqual((self.game / (name + backend.BACKUP_SUFFIX)).read_bytes(), self.originals[name])
+        self.run_app("install", variant="v4")
+        self.run_app("restore")
+        for name in app.ARCHIVES:
+            self.assertEqual((self.game / name).read_bytes(), self.originals[name])
+
+    def test_missing_v5_never_silently_applies_another_variant(self):
+        del self.hud.prepare_v5
+        with self.assertRaisesRegex(RuntimeError, "não inclui a V5"):
+            self.run_app("install")
+        self.assertEqual(self.prepares, [])
+
     def test_missing_v4_never_silently_applies_v3(self):
         del self.hud.prepare_v4
         with self.assertRaisesRegex(RuntimeError, "não inclui a V4"):
-            self.run_app("install")
+            self.run_app("install", variant="v4")
         self.assertEqual(self.prepares, [])
         for name in app.ARCHIVES:
             self.assertEqual((self.game / name).read_bytes(), self.originals[name])
@@ -126,7 +144,7 @@ class PortableControllerTests(unittest.TestCase):
             self.assertEqual((self.game / name).read_bytes(), self.originals[name])
 
     def test_unknown_prepared_resource_failure_never_installs(self):
-        self.hud.prepare_v4 = mock.Mock(side_effect=ValueError("unsupported resource hash"))
+        self.hud.prepare_v5 = mock.Mock(side_effect=ValueError("unsupported resource hash"))
         self.hud.install = mock.Mock()
         with self.assertRaisesRegex(ValueError, "resource hash"):
             self.run_app("install")

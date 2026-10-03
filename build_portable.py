@@ -21,11 +21,12 @@ README = """Wildlands HUD — aplicativo para uso local
 3. Clique com o botão direito em WildlandsHUD.exe e use Executar como administrador.
    Na edição em Python, use Abrir_WildlandsHUD.cmd.
 4. Escolha a pasta da sua própria instalação do jogo.
-5. Escolha V4 (inimigos e aliados normais ocultos; caídos preservados) ou V3 (somente inimigos).
+5. Escolha V5 (todo o HUD oculto, exceto aliado caído), V4 (marcadores) ou V3 (inimigos).
 6. Clique em Aplicar mod e aguarde a conferência terminar.
 
-A V3 foi confirmada em jogo. A função de aliados da V4 é experimental: confira
-um aliado normal e um aliado caído em uma partida antes de depender dela.
+A V3 e a V4 foram confirmadas pelo usuário em jogo. A V5 é experimental e ainda
+precisa de teste em partida: confira um aliado caído dentro e fora da tela.
+A V5 também oculta mira, minimapa, munição, avisos, nomes e distâncias.
 A V4 oculta nomes/distâncias de aliados e preserva o símbolo de reanimação.
 A seta fora da tela foi condicionada ao estado de caído; teste-a também.
 
@@ -127,7 +128,7 @@ def build(output, format="auto", root=ROOT):
             shutil.copyfile(path, stage / path.name)
         (stage / "Abrir_WildlandsHUD.cmd").write_text(LAUNCHER, encoding="ascii")
     (stage / "LEIA-ME.txt").write_text(README, encoding="utf-8-sig")
-    for notice in ("LICENSE", "THIRD_PARTY_NOTICES.md"):
+    for notice in ("LICENSE", "THIRD_PARTY_NOTICES.md", "DISCLAIMER.md"):
         shutil.copyfile(root / notice, stage / notice)
     for guide in ("README.md", "README.pt-BR.md"):
         if (root / guide).is_file():

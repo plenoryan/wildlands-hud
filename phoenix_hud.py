@@ -17,8 +17,8 @@ from phoenix_patch import TARGETS, hide_container
 ROOT = Path(__file__).resolve().parent
 DEFAULT_GAME = Path(r"C:\Program Files (x86)\Steam\steamapps\common\Wildlands")
 LEGACY_PACKAGE = ROOT / "prepared_phoenix"
-PREVIOUS_PACKAGE = ROOT / "prepared_phoenix_v3"
-DEFAULT_PACKAGE = ROOT / "prepared_phoenix_v4"
+PREVIOUS_PACKAGE = ROOT / "prepared_phoenix_v4"
+DEFAULT_PACKAGE = ROOT / "prepared_phoenix_v5"
 ARCHIVES = ("DataPC_extra.forge", "DataPC_extra_patch_01.forge")
 BACKUP_SUFFIX = ".phoenixhud.original"
 PENDING_SUFFIX = ".phoenixhud.pending"
@@ -187,6 +187,25 @@ def prepare_v4(game, package, previous=None):
             variant="enemy-and-normal-ally-hidden-downed-preserved", describe_change=change_details)
 
 
+def prepare_v5(game, package, previous=None):
+    from phoenix_full_hud_patch import TARGETS as v5_targets, hide_hud_except_downed, change_details
+    from phoenix_friendly_patch import verify_downed_gauge
+    from phoenix_image_patch import verify_image_provider
+    suffix = ""
+    if previous is not None:
+        old = load_manifest(previous)
+        for row in old["archives"]:
+            if sha256(game / (row["name"] + BACKUP_SUFFIX)) != row["original_sha256"]:
+                raise ValueError("O backup anterior aos testes nao confere.")
+        suffix = BACKUP_SUFFIX
+    codec = LzoCodec()
+    verify_image_provider(ForgeArchive(game / (ARCHIVES[0] + suffix)), codec)
+    for archive_name in ARCHIVES:
+        verify_downed_gauge(ForgeArchive(game / (archive_name + suffix)), archive_name, codec)
+    prepare(game, package, v5_targets, hide_hud_except_downed, suffix,
+            variant="full-hud-hidden-downed-preserved", describe_change=change_details)
+
+
 def upgrade(game, package, previous):
     """Validate a replacement package, restore backups, then use the installer.
 
@@ -292,14 +311,14 @@ def restore(game, package):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("action", choices=("prepare", "prepare-v2", "prepare-v3", "prepare-v4", "upgrade", "install", "restore", "status"))
+    parser.add_argument("action", choices=("prepare", "prepare-v2", "prepare-v3", "prepare-v4", "prepare-v5", "upgrade", "install", "restore", "status"))
     parser.add_argument("--game-dir", type=Path, default=DEFAULT_GAME)
     parser.add_argument("--package", type=Path, default=DEFAULT_PACKAGE)
     parser.add_argument("--previous-package", type=Path, default=PREVIOUS_PACKAGE)
     args = parser.parse_args()
     game, package = args.game_dir.resolve(), args.package.resolve()
-    if args.action in ("prepare-v2", "prepare-v3", "prepare-v4", "upgrade"):
-        {"prepare-v2": prepare_v2, "prepare-v3": prepare_v3, "prepare-v4": prepare_v4, "upgrade": upgrade}[args.action](
+    if args.action in ("prepare-v2", "prepare-v3", "prepare-v4", "prepare-v5", "upgrade"):
+        {"prepare-v2": prepare_v2, "prepare-v3": prepare_v3, "prepare-v4": prepare_v4, "prepare-v5": prepare_v5, "upgrade": upgrade}[args.action](
             game, package, args.previous_package.resolve())
     elif args.action == "status":
         manifest = load_manifest(package)
@@ -310,7 +329,7 @@ def main():
                 "original" if current == row["original_sha256"] else "estado diferente/ausente")
             print(f"{row['name']}: {state}")
     elif args.action == "prepare":
-        prepare_v4(game, package)
+        prepare_v5(game, package)
     else:
         {"install": install, "restore": restore}[args.action](game, package)
 
