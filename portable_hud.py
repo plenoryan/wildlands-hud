@@ -15,9 +15,10 @@ import shutil
 import sys
 import threading
 import uuid
+from phoenix_options import OPTIONS, DEFAULTS, normalize_options
 
 APP_NAME = "Wildlands HUD"
-APP_VERSION = "0.5.1"
+APP_VERSION = "0.6.0"
 ARCHIVES = ("DataPC_extra.forge", "DataPC_extra_patch_01.forge")
 VARIANTS = {
     "v5": "V5 — manter aliado caído e interação; ocultar restante (experimental)",
@@ -42,9 +43,11 @@ def validate_game(game, restoring=False):
     return game
 
 
-def _write_receipt(path, game, package, variant):
+def _write_receipt(path, game, package, variant, options=None):
     # This receipt contains paths only. The package manifest remains the hash authority.
     content = {"version": 1, "game": str(game), "package": str(package), "variant": variant}
+    if options is not None:
+        content['options'] = normalize_options(options)
     temporary = path.with_name(path.name + "." + uuid.uuid4().hex + ".tmp")
     try:
         with temporary.open("x", encoding="utf8") as stream:
@@ -113,7 +116,7 @@ def _check_space(game, cache):
         raise OSError("Espaço insuficiente no disco do jogo para instalar as cópias verificadas.")
 
 
-def run_operation(action, game, *, cache=None, previous=None, variant="v5", emit=print):
+def run_operation(action, game, *, cache=None, previous=None, variant="custom", options=None, emit=print):
     """Perform one explicitly requested operation through the existing safe backend.
 
     Dependency import is lazy, so opening the UI/building a source distribution
@@ -121,8 +124,9 @@ def run_operation(action, game, *, cache=None, previous=None, variant="v5", emit
     """
     if action not in ("install", "restore"):
         raise ValueError("Operação desconhecida.")
-    if variant not in VARIANTS:
+    if variant not in VARIANTS and variant != 'custom':
         raise ValueError("Versão desconhecida.")
+    chosen = normalize_options(options) if variant == 'custom' else None
     game = validate_game(game, restoring=action == "restore")
     hud = importlib.import_module("phoenix_hud")
     hud.require_game_closed()
@@ -159,18 +163,19 @@ def run_operation(action, game, *, cache=None, previous=None, variant="v5", emit
     package = cache / "packages" / (variant + "-" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S") + "-" + uuid.uuid4().hex[:8])
     package.parent.mkdir(parents=True, exist_ok=True)
     emit("Preparando o mod a partir dos arquivos do seu próprio jogo. Isso pode levar alguns minutos…")
-    prepare(game, package, previous=previous_package if has_originals else None)
+    kwargs = {'options': chosen} if variant == 'custom' else {}
+    prepare(game, package, previous=previous_package if has_originals else None, **kwargs)
     hud.load_manifest(package)  # Refuse incomplete preparation before any install call.
-    _write_receipt(cache / "pending.json", game, package, variant)
+    _write_receipt(cache / "pending.json", game, package, variant, chosen)
     emit("Preparação verificada. Instalando e preservando os arquivos originais…")
     if has_originals:
         hud.upgrade(game, package, previous_package)
     else:
         hud.install(game, package)
-    _write_receipt(cache / "active.json", game, package, variant)
+    _write_receipt(cache / "active.json", game, package, variant, chosen)
     (cache / "pending.json").unlink()
     emit("Instalação concluída. O botão Restaurar originais desfaz esta instalação.")
-    return {"action": action, "variant": variant, "game": str(game), "package": str(package)}
+    return {"action": action, "variant": variant, "options": chosen, "game": str(game), "package": str(package)}
 
 
 class _QueueWriter(io.TextIOBase):
@@ -192,14 +197,29 @@ class _QueueWriter(io.TextIOBase):
             self.buffer = ""
 
 
+def options_panel(parent):
+    import tkinter as tk
+    from tkinter import ttk
+    frame = ttk.LabelFrame(parent, text='Marque o que deseja ocultar · Desmarcado = manter', padding=10)
+    frame.pack(fill='x', pady=(0, 10))
+    variables, controls = {}, []
+    for index, (key, label, default) in enumerate(OPTIONS):
+        variable = tk.BooleanVar(master=parent, value=default)
+        control = ttk.Checkbutton(frame, text=label, variable=variable)
+        control.grid(row=index // 2, column=index % 2, sticky='w', padx=(0, 10), pady=3)
+        variables[key] = variable
+        controls.append(control)
+    return variables, controls
+
+
 def launch_gui():
     import tkinter as tk
     from tkinter import filedialog, messagebox, ttk
 
     root = tk.Tk()
     root.title(APP_NAME + " " + APP_VERSION)
-    root.geometry("760x560")
-    root.minsize(680, 500)
+    root.geometry("900x700")
+    root.minsize(860, 660)
     panel = ttk.Frame(root, padding=20)
     panel.pack(fill="both", expand=True)
     ttk.Label(panel, text=APP_NAME, font=("Segoe UI", 20, "bold")).pack(anchor="w")
@@ -214,10 +234,13 @@ def launch_gui():
     browse = ttk.Button(location, text="Escolher…", command=lambda: directory.set(
         filedialog.askdirectory(title="Selecione a pasta Ghost Recon Wildlands", mustexist=True) or directory.get()))
     browse.pack(side="left", padx=(8, 0))
-    ttk.Label(panel, text="O que ocultar").pack(anchor="w")
-    choice = ttk.Combobox(panel, values=list(VARIANTS.values()), state="readonly")
-    choice.current(0)
-    choice.pack(fill="x", pady=(4, 10))
+    choices, checkboxes = options_panel(panel)
+    ttk.Label(panel, text='Aliado caído e avisos de interação são sempre preservados.\n'
+              'Objetos inclui equipamentos inimigos, minas próprias e outros objetos agrupados pelo jogo.',
+              wraplength=840).pack(anchor='w', pady=(0, 8))
+    defaults_button = ttk.Button(panel, text='Voltar à seleção padrão',
+                                 command=lambda: [choices[k].set(v) for k,v in DEFAULTS.items()])
+    defaults_button.pack(anchor='w', pady=(0, 8))
     previous = tk.StringVar()
     previous_label = tk.StringVar(value="Primeira instalação: não é necessário selecionar nada abaixo.")
 
@@ -252,7 +275,7 @@ def launch_gui():
         if not game:
             messagebox.showerror(APP_NAME, "Escolha a pasta do jogo.")
             return
-        selected = list(VARIANTS)[choice.current()]
+        selected = {key: value.get() for key,value in choices.items()}
         explicit_previous = previous.get() or None
         busy["value"] = True
         for control in controls:
@@ -264,7 +287,7 @@ def launch_gui():
             stream = _QueueWriter(events)
             try:
                 with contextlib.redirect_stdout(stream), contextlib.redirect_stderr(stream):
-                    result = run_operation(action, game, previous=explicit_previous, variant=selected,
+                    result = run_operation(action, game, previous=explicit_previous, options=selected,
                                            emit=lambda text: events.put(("log", text)))
                 stream.flush()
                 events.put(("success", result))
@@ -281,7 +304,7 @@ def launch_gui():
     apply_button.pack(side="left")
     restore_button = ttk.Button(actions, text="Restaurar originais", command=lambda: start("restore"))
     restore_button.pack(side="left", padx=(10, 0))
-    controls = (apply_button, restore_button, browse, entry, advanced, choice)
+    controls = (apply_button, restore_button, browse, entry, advanced, defaults_button, *checkboxes)
     progress.pack(fill="x", pady=(12, 8))
     ttk.Label(panel, textvariable=status, wraplength=690).pack(anchor="w", pady=(0, 8))
     log.pack(fill="both", expand=True)
@@ -297,7 +320,7 @@ def launch_gui():
                     busy["value"] = False
                     progress.stop()
                     for control in controls:
-                        control.configure(state="readonly" if control is choice else "normal")
+                        control.configure(state="normal")
                     if kind == "error":
                         status.set("A operação não foi concluída. Veja a mensagem abaixo.")
                         append_log("ERRO: " + value)
@@ -337,13 +360,20 @@ def self_check(output):
         raise RuntimeError("Componentes da V5 incompletos.")
     window = tk.Tk()
     window.withdraw()
+    variables, controls = options_panel(window)
+    if {key: var.get() for key,var in variables.items()} != DEFAULTS:
+        raise RuntimeError('Opções padrão incorretas.')
+    controls[0].invoke()
+    if variables['enemies'].get() == DEFAULTS['enemies']:
+        raise RuntimeError('Caixa de seleção não responde.')
     window.update_idletasks()
     window.destroy()
     Path(output).write_text(json.dumps({"ok": True, "app_version": APP_VERSION,
                                        "frozen": bool(getattr(sys, "frozen", False)),
                                        "lzo_roundtrip": True, "tkinter": True,
                                        "v4_downed_offscreen_condition": True,
-                                       "v5_full_hud_targets": len(HUD_TARGETS)}), encoding="utf8")
+                                       "v5_full_hud_targets": len(HUD_TARGETS),
+                                       "custom_checkboxes": len(controls)}), encoding="utf8")
 
 
 if __name__ == "__main__":

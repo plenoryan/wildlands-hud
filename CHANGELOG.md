@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.6.0 — 2026-10-03 — Configurable HUD (experimental)
+
+- Replaces the version picker with eight checkboxes. Checked hides a group; unchecked retains it. Defaults hide enemies, objects, normal allies and other world markers. Operational HUD is retained.
+- Always retains downed-ally indicators and contextual interaction prompts. Binocular/drone information is one group because they share widgets. Objects includes player mines and other game-grouped objects.
+- Uses the original, independently decoded transparent 4x4 image. No shared texture edits, so hiding one category does not blank another category’s enemy detection image.
+- Records selections in the manifest/receipt and supports upgrades from older versions using verified original backups. New edition still needs gameplay confirmation.
+
 ## v0.5.1 — 2026-10-02 — Interaction prompt fix
 
 - Fixes the reported V5 regression that hid action prompts such as “press X”.

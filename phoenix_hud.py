@@ -18,7 +18,7 @@ ROOT = Path(__file__).resolve().parent
 DEFAULT_GAME = Path(r"C:\Program Files (x86)\Steam\steamapps\common\Wildlands")
 LEGACY_PACKAGE = ROOT / "prepared_phoenix"
 PREVIOUS_PACKAGE = ROOT / "prepared_phoenix_v4"
-DEFAULT_PACKAGE = ROOT / "prepared_phoenix_v5"
+DEFAULT_PACKAGE = ROOT / "prepared_phoenix_custom"
 ARCHIVES = ("DataPC_extra.forge", "DataPC_extra_patch_01.forge")
 BACKUP_SUFFIX = ".phoenixhud.original"
 PENDING_SUFFIX = ".phoenixhud.pending"
@@ -206,6 +206,28 @@ def prepare_v5(game, package, previous=None):
             variant="full-hud-hidden-downed-preserved", describe_change=change_details)
 
 
+def prepare_custom(game, package, previous=None, options=None):
+    from phoenix_options import normalize_options, selected_targets, patch_selected, describe_change, verify_invisible
+    from phoenix_friendly_patch import verify_downed_gauge
+    options = normalize_options(options)
+    suffix = ''
+    if previous is not None:
+        for row in load_manifest(previous)['archives']:
+            if sha256(game / (row['name'] + BACKUP_SUFFIX)) != row['original_sha256']:
+                raise ValueError('O backup anterior aos testes nao confere.')
+        suffix = BACKUP_SUFFIX
+    codec = LzoCodec()
+    for name in ARCHIVES:
+        archive = ForgeArchive(game / (name + suffix))
+        verify_invisible(archive, name, codec)
+        verify_downed_gauge(archive, name, codec)
+    prepare(game, package, selected_targets(options), patch_selected, suffix,
+            variant='custom', describe_change=describe_change)
+    manifest = load_manifest(package)
+    manifest['options'] = options
+    (package / 'manifest.json').write_text(json.dumps(manifest, indent=2), encoding='utf-8')
+
+
 def upgrade(game, package, previous):
     """Validate a replacement package, restore backups, then use the installer.
 
@@ -329,7 +351,7 @@ def main():
                 "original" if current == row["original_sha256"] else "estado diferente/ausente")
             print(f"{row['name']}: {state}")
     elif args.action == "prepare":
-        prepare_v5(game, package)
+        prepare_custom(game, package)
     else:
         {"install": install, "restore": restore}[args.action](game, package)
 
