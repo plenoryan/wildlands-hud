@@ -11,3 +11,20 @@
     });
   });
 })();
+
+(() => {
+  const button = document.querySelector('[data-copy-pix]');
+  const key = document.querySelector('#pix-key');
+  const status = document.querySelector('[data-copy-status]');
+  if (!button || !key || !status) return;
+  button.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(key.value);
+      status.textContent = button.dataset.copySuccess;
+    } catch {
+      key.focus();
+      key.select();
+      status.textContent = button.dataset.copyFailure;
+    }
+  });
+})();
