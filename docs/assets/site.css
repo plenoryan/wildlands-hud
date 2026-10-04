@@ -8,3 +8,5 @@
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}.button:hover{transform:none}}
 
 .hud-guide{max-width:940px}.hud-guide .section-intro{max-width:760px}.guide-note{font-size:13px;color:var(--muted);max-width:760px;margin:18px 0 28px}.hud-guide>p:last-child{font-size:13px}
+
+.community-grid h3{margin-top:0}.community-grid p,.community-links{font-size:14px;color:var(--muted)}.community-links{padding-left:20px}.community-links li{margin-block:12px}.community-links a{color:var(--green)}

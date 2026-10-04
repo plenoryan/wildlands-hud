@@ -1,0 +1,35 @@
+name: Suggestion or experience / Sugestão ou experiência
+description: Suggest an improvement or share a gameplay test. / Sugira uma melhoria ou relate um teste.
+title: "[Feedback] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        English or Portuguese is welcome. This report will be public; do not attach game files, saves or personal data.
+        Português ou inglês são bem-vindos. O relato será público; não anexe arquivos do jogo, saves ou dados pessoais.
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Type / Tipo
+      options:
+        - Suggestion / Sugestão
+        - Gameplay experience / Experiência em partida
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Mod version / Versão do mod
+      placeholder: v0.7.0
+  - type: textarea
+    id: selections
+    attributes:
+      label: Selected options / Opções marcadas
+      description: For gameplay reports, list the options selected to hide. / Em relatos de teste, liste as opções marcadas para ocultar.
+  - type: textarea
+    id: feedback
+    attributes:
+      label: Suggestion or result / Sugestão ou resultado
+      description: What would you improve, or what worked in your test? / O que você melhoraria ou o que funcionou no seu teste?
+    validations:
+      required: true

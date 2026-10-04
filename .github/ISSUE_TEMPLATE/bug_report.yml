@@ -11,19 +11,25 @@ body:
     id: release
     attributes:
       label: App release / Versão do aplicativo
-      placeholder: v0.4.0
+      placeholder: v0.7.0
     validations:
       required: true
   - type: dropdown
     id: mode
     attributes:
-      label: Mode / Opção
+      label: Configuration / Configuração
       options:
+        - Custom checkboxes / Caixas de seleção (0.6.0 ou posterior)
         - V3 — enemies only / somente inimigos
         - V4 — enemies and normal allies / inimigos e aliados normais
         - Not applicable / Não se aplica
     validations:
       required: true
+  - type: textarea
+    id: selections
+    attributes:
+      label: Selected options / Opções marcadas
+      description: List what you selected to hide, or say default. / Liste o que marcou para ocultar ou informe padrão.
   - type: input
     id: environment
     attributes:
@@ -35,7 +41,7 @@ body:
     id: reproduction
     attributes:
       label: Steps and result / Passos e resultado
-      description: What happened, and what did you expect? For V4, note whether the ally was downed, off-screen or just revived.
+      description: What happened, and what did you expect? For ally issues, note whether the ally was downed, off-screen or just revived. / Para problemas com aliados, informe se estavam caídos, fora da tela ou recém-reanimados.
       placeholder: "1. …"
     validations:
       required: true
