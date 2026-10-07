@@ -18,8 +18,10 @@ class ChoiceTests(unittest.TestCase):
         self.assertFalse(options.DEFAULTS['pings'])
         self.assertTrue(options.DEFAULTS['scanning'])
         self.assertFalse(options.DEFAULTS['optics'])
+        self.assertTrue(options.DEFAULTS['weapons'])
+        self.assertFalse(options.DEFAULTS['grenades'])
         for t in targets:
-            self.assertTrue(t.name.startswith('HUD_Marker_') or t in options.ENEMIES or options.category(t)=='scanning')
+            self.assertTrue(t.name.startswith('HUD_Marker_') or t in options.ENEMIES or options.category(t) in ('scanning','weapons'))
             self.assertNotIn('FriendlyGauge',t.name)
             self.assertNotIn('HUD_Marker_Ping_',t.name)
             self.assertNotIn('HUD_Marker_Beacon_',t.name)
@@ -90,5 +92,26 @@ class RealChoices(unittest.TestCase):
                 if node['type']=='3313560f':
                     at=node['scale_offset']
                     self.assertEqual(body[at:at+8],patched[at:at+8])
+
+    def test_weapon_parent_retains_grenade_selection_and_count(self):
+        checked = 0
+        for t in options.ALL_TARGETS:
+            if not t.name.startswith('HUD_WeaponItemDisplay_C607'):continue
+            body=(FIXTURES/t.archive/(t.name+'.bin')).read_bytes()
+            patched=options.patch_selected(body,t)
+            for node in records(body):
+                if node['name'] not in ('Hud_WeaponItemDisplay_Item','HUD_WeaponItemDisplay_SwitchItems'):continue
+                start=node['fields_offset']; end=start+119
+                self.assertEqual(body[start:end],patched[start:end])
+                checked+=1
+        self.assertEqual(checked,4)  # Current item and selector in base + patch.
+
+    def test_weapon_and_grenade_choices_are_separate(self):
+        for weapons,grenades in itertools.product((False,True),repeat=2):
+            selected=options.selected_targets(dict(options.DEFAULTS,weapons=weapons,grenades=grenades))
+            names={t.name for t in selected}
+            self.assertEqual(any(n.startswith('HUD_WeaponItemDisplay_MainWeapon_') for n in names),weapons)
+            self.assertEqual(any(n.startswith('HUD_WeaponItemDisplay_Item_') for n in names),grenades)
+            self.assertEqual(any(n.startswith('HUD_WeaponItemDisplay_SwitchItems_') for n in names),grenades)
 
 if __name__=='__main__':unittest.main()

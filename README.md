@@ -1,10 +1,10 @@
 # Wildlands HUD
 
-Four categories with full or partial selection and 14 individual options. Defaults retain pings and manual waypoints, while hiding objectives and visual locating assistance. Downed allies, interaction and operational information are retained. Hiding indicators does not disable automatic game tagging.
+Four categories with full or partial selection and 15 individual options. Defaults retain pings and manual waypoints, while hiding objectives and visual locating assistance. Downed allies, interaction and operational information are retained. Hiding indicators does not disable automatic game tagging.
 
 Choose what to hide with checkboxes. **Checked = hide; unchecked = keep.** The version picker has been removed. Downed-ally indicators and interaction prompts are always preserved.
 
-[Download v0.7.0](https://github.com/plenoryan/wildlands-hud/releases/download/v0.7.0/WildlandsHUD.zip) · [Website](https://plenoryan.github.io/wildlands-hud/) · [Changelog](CHANGELOG.md)
+[Download v0.8.0](https://github.com/plenoryan/wildlands-hud/releases/download/v0.8.0/WildlandsHUD.zip) · [Website](https://plenoryan.github.io/wildlands-hud/) · [Changelog](CHANGELOG.md)
 
 ## Default selection
 
@@ -23,7 +23,8 @@ Choose what to hide with checkboxes. **Checked = hide; unchecked = keep.** The v
 | Operational binocular and drone information | Keep |
 | Minimap | Keep |
 | Crosshair | Keep |
-| Weapon and ammunition information | Keep |
+| Weapons and ammunition (without grenades/items) | Hide |
+| Grenades and items: selection and quantity | Keep |
 
 The objects option also covers player mines and other objects grouped by the game. Equipment types are not separate checkboxes. Binoculars and drones share elements and use one option. Pings, objectives, collectibles, locations and sync shot have separate options. The parent checkbox shows partial selection when its items differ.
 
@@ -39,7 +40,7 @@ The objects option also covers player mines and other objects grouped by the gam
 ## Validation and limitations
 
 - Windows 64-bit, your own game installation and about 9 GB free space. The executable includes Python.
-- Defaults retain operational binocular/drone, crosshair, minimap, ammunition and interaction UI, while hiding scanning/locating indicators. When normal allies are hidden, downed ally names/distances are hidden too; the symbol/gauge and conditional off-screen arrows remain.
+- Defaults retain operational binocular/drone, crosshair, minimap, grenades/items and interaction UI, while hiding scanning/locating indicators. When normal allies are hidden, downed ally names/distances are hidden too; the symbol/gauge and conditional off-screen arrows remain.
 - The configurable edition is experimental and still needs gameplay confirmation. Binary tests do not prove every visual game state.
 - Hidden images use an existing transparent game resource. Configurable mode modifies no shared textures.
 - No game files, extracted assets, textures or saves are included. Each player uses their own installation.
@@ -56,3 +57,9 @@ python build_portable.py --format exe --output dist_custom
 Private game fixtures are not distributed; tests requiring them skip in public CI.
 
 [Disclaimer](DISCLAIMER.md) · [GPL-2.0-or-later](LICENSE) · [Third-party notices](THIRD_PARTY_NOTICES.md)
+
+## Weapons, grenades and compatibility
+
+Weapons and ammunition are hidden by default; grenade/item selection and quantity remain visible. Unchecking an option preserves the original HUD but does not enable information disabled in the game’s own settings.
+
+Game Pass: a user reported that the game does not launch after applying the mod. We do not recommend applying it to this edition until the cause is understood. If already applied, use Restore originals. This release has no confirmed compatibility fix.

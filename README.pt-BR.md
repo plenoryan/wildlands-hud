@@ -1,10 +1,10 @@
 # Wildlands HUD
 
-Quatro categorias com seleção total ou parcial e 14 opções individuais. Por padrão, pings e pontos manuais ficam visíveis; objetivos e ajuda visual de localização ficam ocultos. Aliado caído, interação e informações de uso são preservados. Ocultar indicadores não desativa a marcação automática do jogo.
+Quatro categorias com seleção total ou parcial e 15 opções individuais. Por padrão, pings e pontos manuais ficam visíveis; objetivos e ajuda visual de localização ficam ocultos. Aliado caído, interação e informações de uso são preservados. Ocultar indicadores não desativa a marcação automática do jogo.
 
 Escolha o que ocultar com caixas de seleção. **Marcado = ocultar; desmarcado = manter.** O seletor de versões foi removido. Aliado caído e avisos de interação são sempre preservados.
 
-[Download v0.7.0](https://github.com/plenoryan/wildlands-hud/releases/download/v0.7.0/WildlandsHUD.zip) · [Website](https://plenoryan.github.io/wildlands-hud/) · [Changelog](CHANGELOG.md)
+[Download v0.8.0](https://github.com/plenoryan/wildlands-hud/releases/download/v0.8.0/WildlandsHUD.zip) · [Website](https://plenoryan.github.io/wildlands-hud/) · [Changelog](CHANGELOG.md)
 
 ## Seleção padrão
 
@@ -23,7 +23,8 @@ Escolha o que ocultar com caixas de seleção. **Marcado = ocultar; desmarcado =
 | Informações de uso do binóculo e drone | Manter |
 | Minimapa | Manter |
 | Mira | Manter |
-| Informações de armas e munição | Manter |
+| Armas e munição (sem granadas / itens) | Ocultar |
+| Granadas e itens: seleção e quantidade | Manter |
 
 A opção de objetos também inclui minas próprias e outros objetos agrupados pelo jogo. Não há uma caixa separada para cada equipamento. Binóculo e drone ficam na mesma opção porque compartilham elementos. Pings, objetivos, coleta, locais e tiro sincronizado possuem opções separadas. O estado parcial da categoria acompanha os itens.
 
@@ -39,7 +40,7 @@ A opção de objetos também inclui minas próprias e outros objetos agrupados p
 ## Validação e limites
 
 - Windows 64 bits, instalação própria do jogo e cerca de 9 GB livres. O executável inclui Python; não exige instalação separada.
-- A seleção padrão preserva informações de uso do binóculo/drone, mira, minimapa, munição e interação; oculta os indicadores de varredura/localização. Com aliados normais ocultos, os nomes/distâncias dos caídos também ficam ocultos; o símbolo/medidor e as setas condicionais permanecem.
+- A seleção padrão preserva informações de uso do binóculo/drone, mira, minimapa, granadas/itens e interação; oculta os indicadores de varredura/localização. Com aliados normais ocultos, os nomes/distâncias dos caídos também ficam ocultos; o símbolo/medidor e as setas condicionais permanecem.
 - A edição configurável é experimental e ainda precisa de confirmação em partida. Testes de arquivos não comprovam todos os estados visuais do jogo.
 - As imagens ocultas usam um recurso transparente que já existe no jogo. Nenhuma textura compartilhada é modificada pela edição configurável.
 - O ZIP não contém arquivos do jogo, texturas, recursos extraídos ou saves. Cada pessoa prepara a partir de sua própria instalação.
@@ -56,3 +57,9 @@ python build_portable.py --format exe --output dist_custom
 Private game fixtures are not distributed; tests requiring them skip in public CI.
 
 [Isenção de responsabilidade](DISCLAIMER.md) · [GPL-2.0-or-later](LICENSE) · [Third-party notices](THIRD_PARTY_NOTICES.md)
+
+## Armas, granadas e compatibilidade
+
+Armas e munição ficam ocultas por padrão; seleção e quantidade de granadas/itens permanecem visíveis. Desmarcar uma opção preserva o HUD original, mas não reativa informações desabilitadas nas opções do próprio jogo.
+
+Game Pass: foi relatado que o jogo não abre após aplicar o mod. Não recomendamos aplicar nessa edição enquanto a causa não for esclarecida. Se já aplicou, use Restaurar originais. Não há correção de compatibilidade confirmada nesta versão.

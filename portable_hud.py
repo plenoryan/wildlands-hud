@@ -18,7 +18,7 @@ import uuid
 from phoenix_options import OPTIONS, DEFAULTS, GROUPS, normalize_options
 
 APP_NAME = "Wildlands HUD"
-APP_VERSION = "0.7.0"
+APP_VERSION = "0.8.0"
 ARCHIVES = ("DataPC_extra.forge", "DataPC_extra_patch_01.forge")
 VARIANTS = {
     "v5": "V5 — manter aliado caído e interação; ocultar restante (experimental)",
@@ -241,7 +241,7 @@ def launch_gui():
 
     root = tk.Tk()
     root.title(APP_NAME + " " + APP_VERSION)
-    root.geometry("900x760")
+    root.geometry("900x810")
     root.minsize(860, 660)
     panel = ttk.Frame(root, padding=20)
     panel.pack(fill="both", expand=True)
@@ -260,6 +260,8 @@ def launch_gui():
     choices, checkboxes = options_panel(panel)
     ttk.Label(panel, text='Aliado caído e avisos de interação são sempre preservados.\n'
               'Padrão: pings visíveis; objetivos e ajuda visual de localização ocultos.\n'
+              'Padrão: armas/munição ocultas; granadas/itens visíveis. Para exibir, habilite também no HUD do jogo.\n'
+              'Game Pass: há relato de falha ao iniciar após aplicar; compatibilidade não confirmada.\n'
               'Objetos inclui minas próprias. Ocultar a ajuda visual não desativa a marcação automática.',
               wraplength=840).pack(anchor='w', pady=(0, 8))
     defaults_button = ttk.Button(panel, text='Voltar à seleção padrão',

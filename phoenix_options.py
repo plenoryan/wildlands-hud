@@ -28,14 +28,15 @@ OPTIONS = (
     ('optics', 'Informações de uso do binóculo e drone', False),
     ('minimap', 'Minimapa', False),
     ('crosshair', 'Mira', False),
-    ('weapons', 'Informações de armas e munição', False),
+    ('weapons', 'Armas e munição (sem granadas / itens)', True),
+    ('grenades', 'Granadas e itens: seleção e quantidade', False),
 )
 DEFAULTS = {key: default for key, _, default in OPTIONS}
 GROUPS = (
     ('characters', 'Personagens e equipamentos', ('enemies', 'objects', 'allies')),
     ('navigation', 'Marcadores no cenário', ('pings','objectives','collectibles','locations','syncshot','world_warnings')),
     ('recon', 'Drone e binóculo', ('scanning','optics')),
-    ('interface', 'Interface de uso', ('minimap','crosshair','weapons')),
+    ('interface', 'Interface de uso', ('minimap','crosshair','weapons','grenades')),
 )
 INVISIBLE_GUID = UUID('2C83D744-3019-426C-8619-F059C42FEDD8')
 INVISIBLE_ID = 1241263910639
@@ -62,6 +63,8 @@ def category(target):
     if target in FRIENDLY_TARGETS:
         return 'allies'
     name = target.name
+    if name.startswith(('HUD_WeaponItemDisplay_Item_', 'HUD_WeaponItemDisplay_SwitchItems_')):
+        return 'grenades'
     if name.startswith('HUD_Marker_ObjectIntel_'):
         return 'objects'
     for key,prefixes in (

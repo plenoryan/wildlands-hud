@@ -28,7 +28,11 @@ README = """Wildlands HUD — aplicativo para uso local
 O padrão oculta inimigos, objetos, aliados normais, objetivos e a ajuda visual
 de localização. Pings e pontos manuais permanecem visíveis.
 Ocultar os indicadores não desativa a marcação automática do jogo.
-Mira, minimapa, binóculo/drone e munição ficam desmarcados e são preservados.
+Mira, minimapa, binóculo/drone e granadas/itens ficam desmarcados e são preservados.
+Armas e munição ficam ocultas por padrão, separadas das granadas/itens.
+Para exibir, desmarque, aplique e habilite também a informação no HUD do jogo.
+Game Pass: há relato de jogo não iniciar após aplicar; não recomendamos usar
+nessa edição. Restaure os originais se já aplicou. Correção ainda não confirmada.
 Aliado caído e avisos de interação são sempre preservados. A categoria Objetos
 inclui equipamentos inimigos, minas próprias e outros objetos agrupados pelo jogo.
 Binóculo e drone compartilham elementos e ficam na mesma opção.

@@ -39,7 +39,7 @@ jobs:
           python portable_hud.py --self-check source-self-check.json
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           $result = Get-Content -LiteralPath source-self-check.json -Raw | ConvertFrom-Json
-          if (-not $result.ok -or -not $result.lzo_roundtrip -or -not $result.tkinter -or -not $result.v4_downed_offscreen_condition -or $result.v5_full_hud_targets -ne 516 -or $result.custom_checkboxes -ne 14 -or $result.category_checkboxes -ne 4) {
+          if (-not $result.ok -or -not $result.lzo_roundtrip -or -not $result.tkinter -or -not $result.v4_downed_offscreen_condition -or $result.v5_full_hud_targets -ne 516 -or $result.custom_checkboxes -ne 15 -or $result.category_checkboxes -ne 4) {
             throw "Source runtime self-check failed."
           }
 
@@ -53,6 +53,6 @@ jobs:
           $process = Start-Process -FilePath $executable -ArgumentList @('--self-check', ('"' + $report + '"')) -WindowStyle Hidden -Wait -PassThru
           if ($process.ExitCode -ne 0) { throw "Executable self-check exited with code $($process.ExitCode)." }
           $result = Get-Content -LiteralPath $report -Raw | ConvertFrom-Json
-          if (-not $result.ok -or -not $result.frozen -or -not $result.lzo_roundtrip -or -not $result.tkinter -or -not $result.v4_downed_offscreen_condition -or $result.v5_full_hud_targets -ne 516 -or $result.custom_checkboxes -ne 14 -or $result.category_checkboxes -ne 4) {
+          if (-not $result.ok -or -not $result.frozen -or -not $result.lzo_roundtrip -or -not $result.tkinter -or -not $result.v4_downed_offscreen_condition -or $result.v5_full_hud_targets -ne 516 -or $result.custom_checkboxes -ne 15 -or $result.category_checkboxes -ne 4) {
             throw "Bundled runtime self-check failed."
           }

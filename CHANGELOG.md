@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.8.0 — 2026-10-07 — Separate grenades and weapon HUD (experimental)
+
+- Adds a separate grenade/item selection and quantity checkbox. Defaults hide weapons/ammunition and retain grenades/items. Shared parent instances preserve the unchecked group.
+- Explains that keeping the original HUD does not override in-game HUD settings. The reported missing ammunition with the box unchecked was not reproduced in file comparisons: all 32 weapon resources in the prior unchecked package match originals. Gameplay confirmation remains pending.
+- Documents the reported Game Pass launch failure after applying the mod. No compatibility fix is claimed; restore originals on the affected edition.
+
+
 ## v0.7.0 — 2026-10-03 — Categories and individual choices (experimental)
 
 - Four category tabs and 14 individual options; each parent checkbox supports all/none and displays partial selection.
